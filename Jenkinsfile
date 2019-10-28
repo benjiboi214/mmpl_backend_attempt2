@@ -2,7 +2,6 @@ pipeline {
   agent any
   environment {
     BUILD_VERSION = sh(returnStdout: true, script: 'python3.6 -c "import mmpl_backend as mb; import sys; sys.stdout.write(mb.__version__)"')
-    FLAKE8_CONFIG_FILE = 'setup.cfg'
     DOCKER_REGISTRY = '413514076128.dkr.ecr.ap-southeast-2.amazonaws.com'
   }
   stages {
@@ -19,7 +18,6 @@ pipeline {
         recordIssues enabledForFailure: true, blameDisabled: true, tool: flake8(pattern: '**/flake8.xml'), healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH'
         junit '**/pytest.xml'
         cobertura coberturaReportFile: '**/coverage.xml'
-        sh 'rm -rf ./mmpl_backend/__pycache__'
       }
     }
     stage('Deploy: Build Production Docker Image') {
