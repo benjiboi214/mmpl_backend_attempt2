@@ -1,8 +1,8 @@
 version: '3'
 
 volumes:
-  local_postgres_data: {}
-  local_postgres_data_backups: {}
+  django_local_postgres_data: {}
+  django_local_postgres_data_backups: {}
 
 services:
   django: &django
@@ -28,8 +28,8 @@ services:
       dockerfile: ./compose/production/postgres/Dockerfile
     image: mmpl_backend_production_postgres
     volumes:
-      - local_postgres_data:/var/lib/postgresql/data
-      - local_postgres_data_backups:/backups
+      - django_local_postgres_data:/var/lib/postgresql/data
+      - django_local_postgres_data_backups:/backups
     env_file:
       - ./.envs/.local/.postgres
 
