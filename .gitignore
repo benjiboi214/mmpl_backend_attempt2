@@ -70,6 +70,7 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
+*_backup/
 
 # Rope project settings
 .ropeproject
