@@ -10,31 +10,31 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
-    image: mmpl_backend_production_django
+    image: "${DOCKER_REGISTRY}/mmpl_backend_django:${BUILD_VERSION}"
     depends_on:
       - postgres
       - redis
     env_file:
-      - ./.envs/.production/.django
-      - ./.envs/.production/.postgres
+      - "${DJANGO_SECRETS_PATH}"
+      - "${POSTGRES_SECRETS_PATH}"
     command: /start
 
   postgres:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: mmpl_backend_production_postgres
+    image: "${DOCKER_REGISTRY}/mmpl_backend_postgres:${BUILD_VERSION}"
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
       - production_postgres_data_backups:/backups
     env_file:
-      - ./.envs/.production/.postgres
+      - "${POSTGRES_SECRETS_PATH}"
 
   traefik:
     build:
       context: .
       dockerfile: ./compose/production/traefik/Dockerfile
-    image: mmpl_backend_production_traefik
+    image: "${DOCKER_REGISTRY}/mmpl_backend_traefik:${BUILD_VERSION}"
     depends_on:
       - django
     volumes:
@@ -48,17 +48,17 @@ services:
 
   celeryworker:
     <<: *django
-    image: mmpl_backend_production_celeryworker
+    image: "${DOCKER_REGISTRY}/mmpl_backend_celeryworker:${BUILD_VERSION}"
     command: /start-celeryworker
 
   celerybeat:
     <<: *django
-    image: mmpl_backend_production_celerybeat
+    image: "${DOCKER_REGISTRY}/mmpl_backend_celerybeat:${BUILD_VERSION}"
     command: /start-celerybeat
 
   flower:
     <<: *django
-    image: mmpl_backend_production_flower
+    image: "${DOCKER_REGISTRY}/mmpl_backend_flower:${BUILD_VERSION}"
     ports:
       - "5555:5555"
     command: /start-flower
@@ -68,7 +68,8 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/aws/Dockerfile
+    image: "${DOCKER_REGISTRY}/mmpl_backend_awscli:${BUILD_VERSION}"
     env_file:
-      - ./.envs/.production/.django
+      - "${DJANGO_SECRETS_PATH}"
     volumes:
       - production_postgres_data_backups:/backups
