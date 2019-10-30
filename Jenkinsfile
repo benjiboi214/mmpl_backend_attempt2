@@ -23,7 +23,7 @@ pipeline {
     stage('Deploy: Build Production Docker Image') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/generated_project_cookiecutter'
+          branch 'feature/implement_production_build!'
       } }
       steps {
         withCredentials([
@@ -37,7 +37,7 @@ pipeline {
     stage('Deploy: Push Production Image to ECR') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/generated_project_cookiecutter'
+          branch 'feature/implement_production_build!'
       } }
       steps {
         withCredentials([
