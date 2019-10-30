@@ -20,10 +20,16 @@ pipeline {
         cobertura coberturaReportFile: '**/coverage.xml'
       }
     }
+    stage('Testing: Clean Test Environment') {
+      when { not { buildingTag() } }
+      steps {
+        sh './build-scripts/local/clean.sh'
+      }
+    }
     stage('Deploy: Build Production Docker Image') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/implement_production_build!'
+          branch 'feature/implement_production_build'
       } }
       steps {
         withCredentials([
@@ -34,10 +40,21 @@ pipeline {
         }
       }
     }
+    stage('DEBUG: Clean Prod Environment') {
+      when { not { buildingTag() } }
+      steps {
+        withCredentials([
+          file(credentialsId: 'mmpl-backend-postgres', variable: 'POSTGRES_SECRETS_PATH'),
+          file(credentialsId: 'mmpl-backend-django', variable: 'DJANGO_SECRETS_PATH')
+        ]) {
+          sh './build-scripts/production/clean.sh'
+        }
+      }
+    }
     stage('Deploy: Push Production Image to ECR') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/implement_production_build!'
+          branch 'feature/implement_production_build_REMOVE'
       } }
       steps {
         withCredentials([
