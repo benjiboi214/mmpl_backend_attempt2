@@ -14,6 +14,7 @@ export DOCKER_REGISTRY="${DOCKER_REGISTRY:-"413514076128.dkr.ecr.ap-southeast-2.
 export BUILD_VERSION="${BUILD_VERSION:-"0.0.1"}"
 export AWS_ECR_KEY_ID="${AWS_ECR_KEY_ID:-"NONE"}"
 export AWS_ECR_ACCESS_KEY="${AWS_ECR_ACCESS_KEY:-"NONE"}"
+export AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION:-"ap-southeast-2"}"
 export DJANGO_SECRETS_PATH="${DJANGO_SECRETS_PATH:-"./.envs/.production/.django"}"
 export POSTGRES_SECRETS_PATH="${POSTGRES_SECRETS_PATH:-"./.envs/.production/.postgres"}"
 
@@ -22,5 +23,6 @@ ansible-playbook -v -i staging.mmpl.systemiphus.com, \
   -e "github_repo=$GITHUB_REPO github_version=$GITHUB_BRANCH \
       docker_registry=$DOCKER_REGISTRY build_version=$BUILD_VERSION \
       aws_ecr_key_id=$AWS_ECR_KEY_ID aws_ecr_access_key=$AWS_ECR_ACCESS_KEY \
-      django_secrets_path=$DJANGO_SECRETS_PATH postgres_secrets_path=$POSTGRES_SECRETS_PATH" \
+      django_secrets_path=$DJANGO_SECRETS_PATH postgres_secrets_path=$POSTGRES_SECRETS_PATH \
+      aws_default_region=$AWS_DEFAULT_REGION" \
   deploy.yml
