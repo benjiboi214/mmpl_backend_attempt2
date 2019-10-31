@@ -30,7 +30,7 @@ pipeline {
     stage('Deploy: Build Production Docker Image') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/implement_production_build'
+          branch 'feature/implement_deploy_step'
       } }
       steps {
         withCredentials([
