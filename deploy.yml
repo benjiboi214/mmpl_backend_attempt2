@@ -1,0 +1,69 @@
+---
+
+- hosts: all
+  gather_facts: yes
+
+  environment:
+    DOCKER_REGISTRY: "{{ docker_registry }}"
+    BUILD_VERSION: "{{ build_version }}"
+    AWS_ACCESS_KEY_ID: "{{ aws_ecr_key_id }}"
+    AWS_SECRET_ACCESS_KEY: "{{ aws_ecr_access_key }}"
+    AWS_DEFAULT_REGION: "{{ aws_default_region }}"
+
+  tasks:
+    - name: make project dir
+      file:
+        path: "~/mmpl_backend"
+        state: directory
+        mode: 0766
+        owner: django
+        group: django
+
+    - name: ensure new files are created in the django group
+      file:
+        path: "~/mmpl_backend"
+        state: directory
+        mode: g+s
+        owner: django
+        group: django
+
+    - name: clone repo into specified dir
+      git:
+        repo: "{{ github_repo }}"
+        dest: "~/mmpl_backend"
+        version: "{{ github_version }}"
+    
+    - name: Ensure environment dir exists
+      file:
+          path: "~/mmpl_backend/.envs/.production"
+          state: directory
+
+    - name: copy django secrets from local to target
+      copy:
+        src: "{{ django_secrets_path }}"
+        dest: "~/mmpl_backend/.envs/.production/.django"
+
+    - name: copy postgres secrets from local to target
+      copy:
+        src: "{{ postgres_secrets_path }}"
+        dest: "~/mmpl_backend/.envs/.production/.postgres"
+    
+    - name: Pull the images
+      shell: ~/mmpl_backend/build-scripts/production/pull.sh
+      args:
+        chdir: ~/mmpl_backend/
+    
+    - name: Bring down stack
+      shell: "~/mmpl_backend/build-scripts/production/stop.sh"
+      args:
+        chdir: ~/mmpl_backend/
+    
+    - name: Migrate DB
+      shell: "~/mmpl_backend/build-scripts/production/migrate.sh"
+      args:
+        chdir: ~/mmpl_backend/
+
+    - name: Run the images
+      shell: "~/mmpl_backend/build-scripts/production/run.sh"
+      args:
+        chdir: ~/mmpl_backend/
