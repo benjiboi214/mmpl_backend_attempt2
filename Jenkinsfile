@@ -55,7 +55,7 @@ pipeline {
     stage('Deploy: Push Production Image to ECR') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/feature/implement_deploy_step'
+          branch 'feature/implement_deploy_step'
       } }
       steps {
         withCredentials([
@@ -70,7 +70,7 @@ pipeline {
     stage('Deploy: Run Ansible Deploy Script') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/feature/implement_deploy_step'
+          branch 'feature/implement_deploy_step'
       } }
       steps {
         withCredentials([
