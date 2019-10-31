@@ -7,4 +7,4 @@ export BUILD_VERSION="${BUILD_VERSION:-"0.0.1"}"
 export DJANGO_SECRETS_PATH="${DJANGO_SECRETS_PATH:-"./.envs/.production/.django"}"
 export POSTGRES_SECRETS_PATH="${POSTGRES_SECRETS_PATH:-"./.envs/.production/.postgres"}"
 
-docker-compose -f production.yml down -d
+docker-compose -f production.yml down
