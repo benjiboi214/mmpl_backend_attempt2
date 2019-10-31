@@ -9,7 +9,7 @@
 # - AWS_ECR_ACCESS_KEY
 
 export GITHUB_REPO="${GITHUB_REPO:-"https://github.com/benjiboi214/mmpl_backend_attempt2.git"}"
-export GITHUB_BRANCH="${GITHUB_BRANCH:-"feature/generated_project_cookiecutter"}"
+export GITHUB_BRANCH="${GITHUB_BRANCH:-"feature/implement_deploy_step"}"
 export DOCKER_REGISTRY="${DOCKER_REGISTRY:-"413514076128.dkr.ecr.ap-southeast-2.amazonaws.com"}"
 export BUILD_VERSION="${BUILD_VERSION:-"0.0.1"}"
 export AWS_ECR_KEY_ID="${AWS_ECR_KEY_ID:-"NONE"}"
