@@ -67,6 +67,21 @@ pipeline {
         }
       }
     }
+    stage('Deploy: Run Ansible Deploy Script') {
+      when { allOf {
+          not { buildingTag() }
+          branch 'feature/implement_production_build'
+      } }
+      steps {
+        withCredentials([
+          file(credentialsId: 'mmpl-backend-postgres', variable: 'POSTGRES_SECRETS_PATH'),
+          file(credentialsId: 'mmpl-backend-django', variable: 'DJANGO_SECRETS_PATH'),
+          usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
+        ]) {
+          sh 'printenv'
+        }
+      }
+    }
   }
   // post {
   //   cleanup {
