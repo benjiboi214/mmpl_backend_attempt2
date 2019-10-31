@@ -21,12 +21,6 @@ pipeline {
         cobertura coberturaReportFile: '**/coverage.xml'
       }
     }
-    // stage('DEBUG: Clean Test Environment') {
-    //   when { not { buildingTag() } }
-    //   steps {
-    //     sh './build-scripts/local/clean.sh'
-    //   }
-    // }
     stage('Deploy: Build Production Docker Image') {
       when { allOf {
           not { buildingTag() }
@@ -41,17 +35,6 @@ pipeline {
         }
       }
     }
-    // stage('DEBUG: Clean Prod Environment') {
-    //   when { not { buildingTag() } }
-    //   steps {
-    //     withCredentials([
-    //       file(credentialsId: 'mmpl-backend-postgres', variable: 'POSTGRES_SECRETS_PATH'),
-    //       file(credentialsId: 'mmpl-backend-django', variable: 'DJANGO_SECRETS_PATH')
-    //     ]) {
-    //       sh './build-scripts/production/clean.sh'
-    //     }
-    //   }
-    // }
     stage('Deploy: Push Production Image to ECR') {
       when { allOf {
           not { buildingTag() }
@@ -78,7 +61,7 @@ pipeline {
           file(credentialsId: 'mmpl-backend-django', variable: 'DJANGO_SECRETS_PATH'),
           usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
         ]) {
-          sh 'printenv'
+          sh './build-scripts/production/push.sh'
         }
       }
     }
