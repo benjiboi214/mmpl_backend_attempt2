@@ -54,13 +54,13 @@ pipeline {
     stage('Deploy: Push Production Image to ECR') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/implement_production_build_REMOVE'
+          branch 'feature/implement_production_build'
       } }
       steps {
         withCredentials([
           file(credentialsId: 'mmpl-backend-postgres', variable: 'POSTGRES_SECRETS'),
           file(credentialsId: 'mmpl-backend-django', variable: 'DJANGO_SECRETS'),
-          usernamePassword(credentialsId: 'ecrPusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
+          usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
         ]) {
           sh './build-scripts/production/push.sh'
         }
