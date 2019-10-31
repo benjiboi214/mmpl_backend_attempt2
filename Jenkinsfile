@@ -3,6 +3,7 @@ pipeline {
   environment {
     BUILD_VERSION = sh(returnStdout: true, script: 'python3.6 -c "import mmpl_backend as mb; import sys; sys.stdout.write(mb.__version__)"')
     DOCKER_REGISTRY = '413514076128.dkr.ecr.ap-southeast-2.amazonaws.com'
+    AWS_DEFAULT_REGION = 'ap-southeast-2'
   }
   stages {
     stage('Testing: Build Test Docker Image') {
