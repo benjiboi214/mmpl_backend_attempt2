@@ -11,6 +11,6 @@ export AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION:-"ap-southeast-2"}"
 export DJANGO_SECRETS_PATH="${DJANGO_SECRETS_PATH:-"./.envs/.production/.django"}"
 export POSTGRES_SECRETS_PATH="${POSTGRES_SECRETS_PATH:-"./.envs/.production/.postgres"}"
 
-eval $(aws ecr get-login)
+eval $(aws ecr get-login --no-include-email)
 
 docker-compose -f production.yml push
