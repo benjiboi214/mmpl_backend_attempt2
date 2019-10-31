@@ -161,7 +161,8 @@ typings/
 !.vscode/extensions.json
 
 
-
+### Ansible Settings
+*.retry
 
 
 ### Windows template
