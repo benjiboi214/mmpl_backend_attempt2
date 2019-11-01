@@ -2,7 +2,7 @@
 
 - hosts: all
   gather_facts: yes
-  scp_if_ssh: true
+  ansible_scp_if_ssh: True
 
   environment:
     DOCKER_REGISTRY: "{{ docker_registry }}"
