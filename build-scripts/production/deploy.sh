@@ -19,10 +19,11 @@ export DJANGO_SECRETS_PATH="${DJANGO_SECRETS_PATH:-"./.envs/.production/.django"
 export POSTGRES_SECRETS_PATH="${POSTGRES_SECRETS_PATH:-"./.envs/.production/.postgres"}"
 export ANSIBLE_HOST_KEY_CHECKING=False
 export DEPLOY_USER="${DEPLOY_USER:-"ben"}"
+export DEPLOY_HOST="${DEPLOY_HOST:-"NONE"}"
 export SSH_KEY="${SSH_KEY:-"~/.ssh/id_rsa"}"
 export ANSIBLE_SCP_IF_SSH=True
 
-ansible-playbook -v -i staging.mmpl.systemiphus.com, \
+ansible-playbook -v -i $DEPLOY_HOST, \
   -u $DEPLOY_USER --key-file=$SSH_KEY \
   -e "github_repo=$GIT_HTTPS_URL github_version=$GIT_BRANCH \
       docker_registry=$DOCKER_REGISTRY build_version=$BUILD_VERSION \
