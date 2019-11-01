@@ -87,8 +87,8 @@ pipeline {
   }
   post {
     cleanup {
-      sh "./build-scripts/local/clean.sh"
-      sh "./build-scripts/production/clean.sh"
+      sh "./build-scripts/local/clean.sh || true"
+      sh "./build-scripts/production/clean.sh || true"
       sh "docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm || true"
       sh 'docker rmi $(docker images -f "dangling=true" -q) || true'
       cleanWs()
