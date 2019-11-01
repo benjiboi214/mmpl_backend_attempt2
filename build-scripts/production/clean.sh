@@ -13,4 +13,4 @@ docker-compose -f production.yml down --rmi 'all'
 docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm || true
 
 ## Clean up dangling images ##
-docker rmi $(docker images -f "dangling=true" -q) || true
+docker rmi -f $(docker images -f "dangling=true" -q) || true
