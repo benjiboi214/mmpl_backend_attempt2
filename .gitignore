@@ -70,6 +70,7 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
+*_backup/
 
 # Rope project settings
 .ropeproject
@@ -154,13 +155,14 @@ typings/
 
 ### VisualStudioCode template
 .vscode/*
-!.vscode/settings.json
+# !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
 
-
+### Ansible Settings
+*.retry
 
 
 ### Windows template
