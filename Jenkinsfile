@@ -79,7 +79,7 @@ pipeline {
               file(credentialsId: 'mmpl-backend-production-django', variable: 'DJANGO_SECRETS_PATH'),
               usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
             ]) {
-              env.DEPLOY_HOST = "staging.mmpl.systemiphus.com"
+              env.DEPLOY_HOST = "mmpl.systemiphus.com"
               sh './build-scripts/production/deploy.sh'
             }
           }
