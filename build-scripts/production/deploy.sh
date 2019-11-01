@@ -19,7 +19,7 @@ export DJANGO_SECRETS_PATH="${DJANGO_SECRETS_PATH:-"./.envs/.production/.django"
 export POSTGRES_SECRETS_PATH="${POSTGRES_SECRETS_PATH:-"./.envs/.production/.postgres"}"
 export ANSIBLE_HOST_KEY_CHECKING=False
 export USER="${USER:-"ben"}"
-export SSH_KEY="${USER:-"~/.ssh/id_rsa"}"
+export SSH_KEY="${SSH_KEY:-"~/.ssh/id_rsa"}"
 
 ansible-playbook -v -i staging.mmpl.systemiphus.com, \
   -u $USER --key-file=$SSH_KEY \
