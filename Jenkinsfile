@@ -53,25 +53,44 @@ pipeline {
       }
     }
     stage('Deploy: Run Ansible Deploy Script') {
-      when { allOf {
-          not { buildingTag() }
+      when { anyOf {
+          buildingTag()
           branch 'master'
       } }
       steps {
-        withCredentials([
-          file(credentialsId: 'mmpl-backend-postgres', variable: 'POSTGRES_SECRETS_PATH'),
-          file(credentialsId: 'mmpl-backend-django', variable: 'DJANGO_SECRETS_PATH'),
-          usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
-        ]) {
-          sh './build-scripts/production/deploy.sh'
+        script {
+          if (env.BRANCH_NAME == 'master') {
+            // Do master (staging) deploy
+            withCredentials([
+              file(credentialsId: 'mmpl-backend-staging-postgres', variable: 'POSTGRES_SECRETS_PATH'),
+              file(credentialsId: 'mmpl-backend-staging-django', variable: 'DJANGO_SECRETS_PATH'),
+              usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
+            ]) {
+              env.DEPLOY_HOST = "staging.mmpl.systemiphus.com"
+              sh './build-scripts/production/deploy.sh'
+            }
+          }
+          def tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+          if (tag) {
+            sh 'echo RUNNING THE TAGGED PIPELINE'
+            // Do tag (production) deploy
+            withCredentials([
+              file(credentialsId: 'mmpl-backend-production-postgres', variable: 'POSTGRES_SECRETS_PATH'),
+              file(credentialsId: 'mmpl-backend-production-django', variable: 'DJANGO_SECRETS_PATH'),
+              usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
+            ]) {
+              env.DEPLOY_HOST = "staging.mmpl.systemiphus.com"
+              sh './build-scripts/production/deploy.sh'
+            }
+          }
         }
       }
     }
   }
   post {
     cleanup {
-      sh "./build-scripts/local/clean.sh"
-      sh "./build-scripts/production/clean.sh"
+      sh "./build-scripts/local/clean.sh || true"
+      sh "./build-scripts/production/clean.sh || true"
       sh "docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm || true"
       sh 'docker rmi $(docker images -f "dangling=true" -q) || true'
       cleanWs()
