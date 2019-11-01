@@ -70,7 +70,9 @@ pipeline {
               sh './build-scripts/production/deploy.sh'
             }
           }
-          if (buildingTag()) {
+          def tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+          if (tag) {
+            sh 'echo RUNNING THE TAGGED PIPELINE'
             // Do tag (production) deploy
             withCredentials([
               file(credentialsId: 'mmpl-backend-production-postgres', variable: 'POSTGRES_SECRETS_PATH'),
