@@ -20,7 +20,7 @@ export POSTGRES_SECRETS_PATH="${POSTGRES_SECRETS_PATH:-"./.envs/.production/.pos
 export ANSIBLE_HOST_KEY_CHECKING=False
 export DEPLOY_USER="${DEPLOY_USER:-"ben"}"
 export SSH_KEY="${SSH_KEY:-"~/.ssh/id_rsa"}"
-export ANSIBLE_SCP_EXECUTABLE=True
+export ANSIBLE_SCP_IF_SSH=True
 
 ansible-playbook -v -i staging.mmpl.systemiphus.com, \
   -u $DEPLOY_USER --key-file=$SSH_KEY \
