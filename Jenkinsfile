@@ -11,6 +11,7 @@ pipeline {
     stage('Testing: Build Test Docker Image') {
       when { not { buildingTag() } }
       steps {
+        sh 'printenv'
         sh './build-scripts/local/build.sh'
       }
     }
