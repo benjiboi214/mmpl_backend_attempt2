@@ -8,7 +8,7 @@
 # - AWS_ECR_KEY_ID
 # - AWS_ECR_ACCESS_KEY
 
-export GIT_URL="${GIT_URL:-"https://github.com/benjiboi214/mmpl_backend_attempt2.git"}"
+export GIT_HTTPS_URL="${GIT_HTTPS_URL:-"https://github.com/benjiboi214/mmpl_backend_attempt2.git"}"
 export GIT_BRANCH="${GIT_BRANCH:-"feature/implement_deploy_step"}"
 export DOCKER_REGISTRY="${DOCKER_REGISTRY:-"413514076128.dkr.ecr.ap-southeast-2.amazonaws.com"}"
 export BUILD_VERSION="${BUILD_VERSION:-"0.0.1"}"
@@ -28,7 +28,7 @@ echo "#### END ENV CONTENT IN DEPLOY SCRIPT ####"
 
 ansible-playbook -v -i staging.mmpl.systemiphus.com, \
   -u $DEPLOY_USER --key-file=$SSH_KEY \
-  -e "github_repo=$GIT_URL github_version=$GIT_BRANCH \
+  -e "github_repo=$GIT_HTTPS_URL github_version=$GIT_BRANCH \
       docker_registry=$DOCKER_REGISTRY build_version=$BUILD_VERSION \
       aws_ecr_key_id=$AWS_ECR_KEY_ID aws_ecr_access_key=$AWS_ECR_ACCESS_KEY \
       django_secrets_path=$DJANGO_SECRETS_PATH postgres_secrets_path=$POSTGRES_SECRETS_PATH \

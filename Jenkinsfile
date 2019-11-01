@@ -5,6 +5,7 @@ pipeline {
     DOCKER_REGISTRY = '413514076128.dkr.ecr.ap-southeast-2.amazonaws.com'
     AWS_DEFAULT_REGION = 'ap-southeast-2'
     DEPLOY_USER = 'django'
+    GIT_HTTPS_URL = "https://github.com/benjiboi214/mmpl_backend_attempt2.git"
   }
   stages {
     stage('Testing: Build Test Docker Image') {
