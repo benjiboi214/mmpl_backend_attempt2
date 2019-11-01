@@ -26,7 +26,7 @@ pipeline {
     stage('Deploy: Build Production Docker Image') {
       when { allOf {
           not { buildingTag() }
-          branch 'develop'
+          branch 'master'
       } }
       steps {
         withCredentials([
@@ -40,7 +40,7 @@ pipeline {
     stage('Deploy: Push Production Image to ECR') {
       when { allOf {
           not { buildingTag() }
-          branch 'develop'
+          branch 'master'
       } }
       steps {
         withCredentials([
@@ -55,7 +55,7 @@ pipeline {
     stage('Deploy: Run Ansible Deploy Script') {
       when { allOf {
           not { buildingTag() }
-          branch 'develop'
+          branch 'master'
       } }
       steps {
         withCredentials([
