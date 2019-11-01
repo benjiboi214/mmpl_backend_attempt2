@@ -18,11 +18,11 @@ export AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION:-"ap-southeast-2"}"
 export DJANGO_SECRETS_PATH="${DJANGO_SECRETS_PATH:-"./.envs/.production/.django"}"
 export POSTGRES_SECRETS_PATH="${POSTGRES_SECRETS_PATH:-"./.envs/.production/.postgres"}"
 export ANSIBLE_HOST_KEY_CHECKING=False
-export USER="${USER:-"ben"}"
+export DEPLOY_USER="${DEPLOY_USER:-"ben"}"
 export SSH_KEY="${SSH_KEY:-"~/.ssh/id_rsa"}"
 
 ansible-playbook -v -i staging.mmpl.systemiphus.com, \
-  -u $USER --key-file=$SSH_KEY \
+  -u $DEPLOY_USER --key-file=$SSH_KEY \
   -e "github_repo=$GITHUB_REPO github_version=$GITHUB_BRANCH \
       docker_registry=$DOCKER_REGISTRY build_version=$BUILD_VERSION \
       aws_ecr_key_id=$AWS_ECR_KEY_ID aws_ecr_access_key=$AWS_ECR_ACCESS_KEY \
