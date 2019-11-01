@@ -8,7 +8,7 @@
 # - AWS_ECR_KEY_ID
 # - AWS_ECR_ACCESS_KEY
 
-export GIT_HTTPS_URL="${GIT_HTTPS_URL:-"https://github.com/benjiboi214/mmpl_backend_attempt2.git"}"
+export GIT_HTTPS_URL="${GIT_HTTPS_URL:-"https://github.com/benjiboi214/mmpl_backend.git"}"
 export GIT_BRANCH="${GIT_BRANCH:-"feature/implement_deploy_step"}"
 export DOCKER_REGISTRY="${DOCKER_REGISTRY:-"413514076128.dkr.ecr.ap-southeast-2.amazonaws.com"}"
 export BUILD_VERSION="${BUILD_VERSION:-"0.0.1"}"
