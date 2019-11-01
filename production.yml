@@ -7,6 +7,7 @@ volumes:
 
 services:
   django: &django
+    restart: always
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
@@ -20,6 +21,7 @@ services:
     command: /start
 
   postgres:
+    restart: always
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
@@ -31,6 +33,7 @@ services:
       - "${POSTGRES_SECRETS_PATH}"
 
   traefik:
+    restart: always
     build:
       context: .
       dockerfile: ./compose/production/traefik/Dockerfile
@@ -44,19 +47,23 @@ services:
       - "0.0.0.0:443:443"
 
   redis:
+    restart: always
     image: redis:5.0
 
   celeryworker:
+    restart: always
     <<: *django
     image: "${DOCKER_REGISTRY}/mmpl_backend_celeryworker:${BUILD_VERSION}"
     command: /start-celeryworker
 
   celerybeat:
+    restart: always
     <<: *django
     image: "${DOCKER_REGISTRY}/mmpl_backend_celerybeat:${BUILD_VERSION}"
     command: /start-celerybeat
 
   flower:
+    restart: always
     <<: *django
     image: "${DOCKER_REGISTRY}/mmpl_backend_flower:${BUILD_VERSION}"
     ports:

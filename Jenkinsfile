@@ -4,6 +4,8 @@ pipeline {
     BUILD_VERSION = sh(returnStdout: true, script: 'python3.6 -c "import mmpl_backend as mb; import sys; sys.stdout.write(mb.__version__)"')
     DOCKER_REGISTRY = '413514076128.dkr.ecr.ap-southeast-2.amazonaws.com'
     AWS_DEFAULT_REGION = 'ap-southeast-2'
+    DEPLOY_USER = 'django'
+    GIT_HTTPS_URL = "https://github.com/benjiboi214/mmpl_backend_attempt2.git"
   }
   stages {
     stage('Testing: Build Test Docker Image') {
@@ -21,16 +23,10 @@ pipeline {
         cobertura coberturaReportFile: '**/coverage.xml'
       }
     }
-    // stage('DEBUG: Clean Test Environment') {
-    //   when { not { buildingTag() } }
-    //   steps {
-    //     sh './build-scripts/local/clean.sh'
-    //   }
-    // }
     stage('Deploy: Build Production Docker Image') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/implement_production_build'
+          branch 'develop'
       } }
       steps {
         withCredentials([
@@ -41,21 +37,10 @@ pipeline {
         }
       }
     }
-    // stage('DEBUG: Clean Prod Environment') {
-    //   when { not { buildingTag() } }
-    //   steps {
-    //     withCredentials([
-    //       file(credentialsId: 'mmpl-backend-postgres', variable: 'POSTGRES_SECRETS_PATH'),
-    //       file(credentialsId: 'mmpl-backend-django', variable: 'DJANGO_SECRETS_PATH')
-    //     ]) {
-    //       sh './build-scripts/production/clean.sh'
-    //     }
-    //   }
-    // }
     stage('Deploy: Push Production Image to ECR') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/implement_production_build'
+          branch 'develop'
       } }
       steps {
         withCredentials([
@@ -67,13 +52,29 @@ pipeline {
         }
       }
     }
+    stage('Deploy: Run Ansible Deploy Script') {
+      when { allOf {
+          not { buildingTag() }
+          branch 'develop'
+      } }
+      steps {
+        withCredentials([
+          file(credentialsId: 'mmpl-backend-postgres', variable: 'POSTGRES_SECRETS_PATH'),
+          file(credentialsId: 'mmpl-backend-django', variable: 'DJANGO_SECRETS_PATH'),
+          usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
+        ]) {
+          sh './build-scripts/production/deploy.sh'
+        }
+      }
+    }
   }
-  // post {
-  //   cleanup {
-  //     sh "docker-compose -f local.yml down --rmi 'all'"
-  //     sh "docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm || true"
-  //     sh 'docker rmi $(docker images -f "dangling=true" -q) || true'
-  //     cleanWs()
-  //   }
-  // }
+  post {
+    cleanup {
+      sh "./build-scripts/local/clean.sh"
+      sh "./build-scripts/production/clean.sh"
+      sh "docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm || true"
+      sh 'docker rmi $(docker images -f "dangling=true" -q) || true'
+      cleanWs()
+    }
+  }
 }
