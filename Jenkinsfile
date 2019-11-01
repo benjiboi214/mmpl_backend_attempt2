@@ -68,12 +68,13 @@ pipeline {
       }
     }
   }
-  // post {
-  //   cleanup {
-  //     sh "docker-compose -f local.yml down --rmi 'all'"
-  //     sh "docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm || true"
-  //     sh 'docker rmi $(docker images -f "dangling=true" -q) || true'
-  //     cleanWs()
-  //   }
-  // }
+  post {
+    cleanup {
+      sh "./build-scripts/local/clean.sh"
+      sh "./build-scripts/production/clean.sh"
+      sh "docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm || true"
+      sh 'docker rmi $(docker images -f "dangling=true" -q) || true'
+      cleanWs()
+    }
+  }
 }
