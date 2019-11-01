@@ -17,9 +17,12 @@ export AWS_ECR_ACCESS_KEY="${AWS_ECR_ACCESS_KEY:-"NONE"}"
 export AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION:-"ap-southeast-2"}"
 export DJANGO_SECRETS_PATH="${DJANGO_SECRETS_PATH:-"./.envs/.production/.django"}"
 export POSTGRES_SECRETS_PATH="${POSTGRES_SECRETS_PATH:-"./.envs/.production/.postgres"}"
+export ANSIBLE_HOST_KEY_CHECKING=False
+export USER="${USER:-"ben"}"
+export SSH_KEY="${USER:-"~/.ssh/id_rsa"}"
 
 ansible-playbook -v -i staging.mmpl.systemiphus.com, \
-  -u django --key-file=/Users/ben/.ssh/id_rsa \
+  -u $USER --key-file=$SSH_KEY \
   -e "github_repo=$GITHUB_REPO github_version=$GITHUB_BRANCH \
       docker_registry=$DOCKER_REGISTRY build_version=$BUILD_VERSION \
       aws_ecr_key_id=$AWS_ECR_KEY_ID aws_ecr_access_key=$AWS_ECR_ACCESS_KEY \
