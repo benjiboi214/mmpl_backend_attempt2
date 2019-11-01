@@ -32,13 +32,17 @@ OnHostRule = true
       url = "http://django:5000"
 
 [frontends]
-  [frontends.django]
+  [frontends.staging]
     backend = "django"
     passHostHeader = true
     [frontends.django.headers]
       HostsProxyHeaders = ['X-CSRFToken']
     [frontends.django.routes.dr1]
       rule = "Host:staging.mmpl.systemiphus.com"
-    [frontends.django.routes.dr2]
+  [frontends.production]
+    backend = "django"
+    passHostHeader = true
+    [frontends.django.headers]
+      HostsProxyHeaders = ['X-CSRFToken']
+    [frontends.django.routes.dr1]
       rule = "Host:mmpl.systemiphus.com"
-
