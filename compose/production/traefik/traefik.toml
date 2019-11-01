@@ -39,3 +39,6 @@ OnHostRule = true
       HostsProxyHeaders = ['X-CSRFToken']
     [frontends.django.routes.dr1]
       rule = "Host:staging.mmpl.systemiphus.com"
+    [frontends.django.routes.dr2]
+      rule = "Host:mmpl.systemiphus.com"
+
