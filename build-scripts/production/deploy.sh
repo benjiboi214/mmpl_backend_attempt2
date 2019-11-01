@@ -22,10 +22,6 @@ export DEPLOY_USER="${DEPLOY_USER:-"ben"}"
 export SSH_KEY="${SSH_KEY:-"~/.ssh/id_rsa"}"
 export ANSIBLE_SCP_IF_SSH=True
 
-echo "#### START ENV CONTENT IN DEPLOY SCRIPT ####"
-printenv
-echo "#### END ENV CONTENT IN DEPLOY SCRIPT ####"
-
 ansible-playbook -v -i staging.mmpl.systemiphus.com, \
   -u $DEPLOY_USER --key-file=$SSH_KEY \
   -e "github_repo=$GIT_HTTPS_URL github_version=$GIT_BRANCH \

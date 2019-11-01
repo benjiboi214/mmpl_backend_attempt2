@@ -63,7 +63,6 @@ pipeline {
           file(credentialsId: 'mmpl-backend-django', variable: 'DJANGO_SECRETS_PATH'),
           usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
         ]) {
-          sh 'printenv'
           sh './build-scripts/production/deploy.sh'
         }
       }
