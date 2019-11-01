@@ -57,27 +57,29 @@ pipeline {
           buildingTag()
           branch 'feature/implement_tag_deploy'
       } }
-      script {
-        if (env.BRANCH_NAME == 'feature/implement_tag_deploy') {
-          // Do master (staging) deploy
-          withCredentials([
-            file(credentialsId: 'mmpl-backend-staging-postgres', variable: 'POSTGRES_SECRETS_PATH'),
-            file(credentialsId: 'mmpl-backend-staging-django', variable: 'DJANGO_SECRETS_PATH'),
-            usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
-          ]) {
-            env.DEPLOY_HOST = "staging.mmpl.systemiphus.com"
-            sh './build-scripts/production/deploy.sh'
+      steps {
+        script {
+          if (env.BRANCH_NAME == 'feature/implement_tag_deploy') {
+            // Do master (staging) deploy
+            withCredentials([
+              file(credentialsId: 'mmpl-backend-staging-postgres', variable: 'POSTGRES_SECRETS_PATH'),
+              file(credentialsId: 'mmpl-backend-staging-django', variable: 'DJANGO_SECRETS_PATH'),
+              usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
+            ]) {
+              env.DEPLOY_HOST = "staging.mmpl.systemiphus.com"
+              sh './build-scripts/production/deploy.sh'
+            }
           }
-        }
-        if (buildingTag()) {
-          // Do tag (production) deploy
-          withCredentials([
-            file(credentialsId: 'mmpl-backend-production-postgres', variable: 'POSTGRES_SECRETS_PATH'),
-            file(credentialsId: 'mmpl-backend-production-django', variable: 'DJANGO_SECRETS_PATH'),
-            usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
-          ]) {
-            env.DEPLOY_HOST = "mmpl.systemiphus.com"
-            sh './build-scripts/production/deploy.sh'
+          if (buildingTag()) {
+            // Do tag (production) deploy
+            withCredentials([
+              file(credentialsId: 'mmpl-backend-production-postgres', variable: 'POSTGRES_SECRETS_PATH'),
+              file(credentialsId: 'mmpl-backend-production-django', variable: 'DJANGO_SECRETS_PATH'),
+              usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
+            ]) {
+              env.DEPLOY_HOST = "mmpl.systemiphus.com"
+              sh './build-scripts/production/deploy.sh'
+            }
           }
         }
       }
