@@ -26,7 +26,7 @@ pipeline {
     stage('Deploy: Build Production Docker Image') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/implement_tag_deploy'
+          branch 'master'
       } }
       steps {
         withCredentials([
@@ -40,7 +40,7 @@ pipeline {
     stage('Deploy: Push Production Image to ECR') {
       when { allOf {
           not { buildingTag() }
-          branch 'feature/implement_tag_deploy'
+          branch 'master'
       } }
       steps {
         withCredentials([
@@ -55,11 +55,11 @@ pipeline {
     stage('Deploy: Run Ansible Deploy Script') {
       when { anyOf {
           buildingTag()
-          branch 'feature/implement_tag_deploy'
+          branch 'master'
       } }
       steps {
         script {
-          if (env.BRANCH_NAME == 'feature/implement_tag_deploy') {
+          if (env.BRANCH_NAME == 'master') {
             // Do master (staging) deploy
             withCredentials([
               file(credentialsId: 'mmpl-backend-staging-postgres', variable: 'POSTGRES_SECRETS_PATH'),
@@ -79,7 +79,7 @@ pipeline {
               file(credentialsId: 'mmpl-backend-production-django', variable: 'DJANGO_SECRETS_PATH'),
               usernamePassword(credentialsId: 'aws-ecr-pusher', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
             ]) {
-              env.DEPLOY_HOST = "mmpl.systemiphus.com"
+              env.DEPLOY_HOST = "staging.mmpl.systemiphus.com"
               sh './build-scripts/production/deploy.sh'
             }
           }
