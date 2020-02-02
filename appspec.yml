@@ -1,0 +1,16 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: arn:aws:ecs:ap-southeast-2:413514076128:task-definition/django-bluegreen-example 
+        LoadBalancerInfo:
+          ContainerName: "django-bluegreen-example-c"
+          ContainerPort: 80
+# Optional properties
+        PlatformVersion: "LATEST"
+        NetworkConfiguration:
+          AwsvpcConfiguration:
+            Subnets: [ "subnet-05f221ab7134d8d4d", "subnet-07f4757a3b1f7a637"]
+            SecurityGroups: ["sg-07faf38989e526674"]
+            AssignPublicIp: "ENABLED"
