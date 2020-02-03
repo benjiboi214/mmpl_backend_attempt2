@@ -3,3 +3,4 @@ Pipfile
 .vscode/
 .env
 db.sqlite3
+pytest.xml
