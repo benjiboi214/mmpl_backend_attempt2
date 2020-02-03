@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+    commands:
+        - echo Entered the install phase...
+  pre_build:
+    commands:
+      - echo Nothing to do in prebuild phase
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Nothing happening here yet
+      - python --version
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Nothing to do in postbuild phase
+# reports:
+#   files: /imageDetail.json
+#   discard-paths: yes
