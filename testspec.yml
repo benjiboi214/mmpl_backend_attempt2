@@ -6,13 +6,12 @@ phases:
       python: 3.7
     commands:
         - echo Entered the install phase...
-        - yum install y which
+        - yum install -y which
         - pip install pipenv
-        - pipenv --bare install --ignore-pipfile --dev
   pre_build:
     commands:
       - echo Nothing to do in prebuild phase
-      - ls -la
+      - pipenv --bare install --ignore-pipfile --dev
   build:
     commands:
       - echo Build started on `date`
