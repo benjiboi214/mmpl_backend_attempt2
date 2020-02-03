@@ -13,6 +13,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Nothing happening here yet
+      - python --version
   post_build:
     commands:
       - echo Build completed on `date`
