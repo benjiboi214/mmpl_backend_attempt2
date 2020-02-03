@@ -6,18 +6,22 @@ phases:
       python: 3.7
     commands:
         - echo Entered the install phase...
+        - pip install pipenv
+        - pipenv --bare install --ignore-pipfile --dev
   pre_build:
     commands:
       - echo Nothing to do in prebuild phase
+      - ls -la
   build:
     commands:
       - echo Build started on `date`
       - echo Nothing happening here yet
-      - python --version
+      - ./build_scripts/local/unit_test.sh
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Nothing to do in postbuild phase
+      - ls -la
 # reports:
 #   files: /imageDetail.json
 #   discard-paths: yes
