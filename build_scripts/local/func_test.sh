@@ -1,6 +1,4 @@
-#/bin/bash
-
-# pipenv run python functional_tests.py
+#!/bin/bash
 
 . .env
 
