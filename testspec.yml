@@ -22,9 +22,15 @@ phases:
       - echo Nothing to do in postbuild phase
       - ls -la
 reports:
-  UnitTestReports:
+  UnitTests:
     files:
       - pytest.xml
-      - flake8.xml
+    base-directory: ./
+  CoverageTests:
+    files:
       - coverage.xml
+    base-directory: ./
+  Flake8Test:
+    files:
+      - flake8.xml
     base-directory: ./
