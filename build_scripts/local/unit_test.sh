@@ -1,4 +1,4 @@
 #/bin/bash
 
-pipenv run pytest api/ \
+pipenv run pytest \
   --junitxml=${PYTEST_REPORT_OUTPUT:-"./pytest.xml"}
