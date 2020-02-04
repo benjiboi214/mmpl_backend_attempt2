@@ -5,6 +5,8 @@ Pipfile
 # Test Output
 geckodriver.log
 pytest.xml
+pytest-unit.xml
+pytest-func.xml
 coverage.xml
 flake8.xml
 db.sqlite3

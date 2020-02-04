@@ -8,4 +8,5 @@ port = os.getenv("DJANGO_EXTERNAL_PORT_NUM", "")
 browser = webdriver.Firefox()
 browser.get(f'http://{host}:{port}')
 
-assert 'Django' in browser.title
+def test_deployment_successful():
+    assert 'Page not found' in browser.title
