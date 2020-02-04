@@ -6,8 +6,6 @@ phases:
       python: 3.8
     commands:
         - echo Entered the install phase...
-        # - yum install -y which
-        # - apt-get install which -y
         - pip install pipenv
         - "python -c \"import sqlite3; print(\\\"SQLite Version: \\\" + sqlite3.sqlite_version)\""
   pre_build:
