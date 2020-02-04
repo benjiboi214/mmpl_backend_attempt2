@@ -8,10 +8,10 @@ echo "#### Running Flake8 ####"
 pipenv run flake8 \
   --format junit-xml \
   --output-file=${FLAKE8_REPORT_OUTPUT:-"./flake8.xml"} \
-  --config=${FLAKE8_CONFIG_FILE:-"setup.cfg"} .
+  --config=${FLAKE8_CONFIG_FILE:-"flake8.cfg"} .
 
 echo "#### Running Coverage ####"
 pipenv run coverage \
   run -m pytest
 pipenv run coverage \
-  xml -o ${COVERAGE_REPORT_OUTPUT:-"/coverage.xml"}
+  xml -o ${COVERAGE_REPORT_OUTPUT:-"./coverage.xml"}
