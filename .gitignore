@@ -1,6 +1,11 @@
-geckodriver.log
-Pipfile
+# IDE Environ
 .vscode/
 .env
-db.sqlite3
+Pipfile
+
+# Test Output
+geckodriver.log
 pytest.xml
+coverage.xml
+flake8.xml
+db.sqlite3
