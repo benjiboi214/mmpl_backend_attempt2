@@ -7,7 +7,7 @@ phases:
     commands:
         - echo Entered the install phase...
         - pip install pipenv
-        - "python -c \"import sqlite3; print(\\\"SQLite Version: \\\" + sqlite3.sqlite_version)\""
+        # - "python -c \"import sqlite3; print(\\\"SQLite Version: \\\" + sqlite3.sqlite_version)\""
   pre_build:
     commands:
       - echo Nothing to do in prebuild phase
