@@ -3,10 +3,10 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.7
+      python: 3.8
     commands:
         - echo Entered the install phase...
-        - yum install -y which
+        # - yum install -y which
         - pip install pipenv
         - "python -c \"import sqlite3; print(\\\"SQLite Version: \\\" + sqlite3.sqlite_version)\""
   pre_build:
