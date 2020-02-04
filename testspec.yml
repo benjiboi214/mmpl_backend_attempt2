@@ -13,7 +13,6 @@ phases:
     commands:
       - echo Nothing to do in prebuild phase
       - pipenv --bare install --ignore-pipfile --dev
-      - pipenv run pything --version
   build:
     commands:
       - echo Build started on `date`
