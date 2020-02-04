@@ -1,6 +1,5 @@
 # IDE Environ
 .vscode/
-.env
 Pipfile
 
 # Test Output
