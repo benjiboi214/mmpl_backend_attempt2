@@ -25,4 +25,6 @@ reports:
   UnitTestReports:
     files:
       - pytest.xml
+      - flake8.xml
+      - coverage.xml
     base-directory: ./
