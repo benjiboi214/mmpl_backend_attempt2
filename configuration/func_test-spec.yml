@@ -1,0 +1,36 @@
+# version: 0.2
+
+# phases:
+#   install:
+#     runtime-versions:
+#       python: 3.8
+#     commands:
+#         - echo Entered the install phase...
+#         - pip install pipenv
+#   pre_build:
+#     commands:
+#       - echo Nothing to do in prebuild phase
+#       - pipenv --bare install --ignore-pipfile --dev
+#   build:
+#     commands:
+#       - echo Build started on `date`
+#       - echo Nothing happening here yet
+#       - ./build_scripts/local/unit_test.sh
+#   post_build:
+#     commands:
+#       - echo Build completed on `date`
+#       - echo Nothing to do in postbuild phase
+#       - ls -la
+# reports:
+#   UnitTests:
+#     files:
+#       - pytest.xml
+#     base-directory: ./
+#   CoverageTests:
+#     files:
+#       - coverage.xml
+#     base-directory: ./
+#   Flake8Tests:
+#     files:
+#       - flake8.xml
+#     base-directory: ./
