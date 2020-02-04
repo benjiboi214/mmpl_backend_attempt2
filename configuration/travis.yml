@@ -1,0 +1,17 @@
+language: python
+python:
+    - "3.8"
+env:
+    - EXAMPLE_ENV="wew"
+install:
+    - pip install pipenv
+    - pipenv --bare install --ignore-pipfile --dev
+script:
+    - ./build_scripts/local/unit_test.sh
+# - python manage.py makemigrations --settings=mmpl_rest.settings
+# - python manage.py migrate
+# - python manage.py collectstatic --noinput --settings=mmpl_rest.settings
+# - coverage run --source=. manage.py test --noinput --settings=mmpl_rest.settings
+# run coveralls after successful tests
+# after_success:
+# - coveralls
