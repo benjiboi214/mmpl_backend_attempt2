@@ -16,6 +16,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Nothing happening here yet
+      - ls -la ../
       - ./build_scripts/local/unit_test.sh
   post_build:
     commands:
