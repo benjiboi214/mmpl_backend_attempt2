@@ -21,6 +21,8 @@ phases:
       - echo Build completed on `date`
       - echo Nothing to do in postbuild phase
       - ls -la
-# reports:
-#   files: /imageDetail.json
-#   discard-paths: yes
+reports:
+  UnitTestReports:
+    files:
+      - pytest.xml
+    base-directory: ./
