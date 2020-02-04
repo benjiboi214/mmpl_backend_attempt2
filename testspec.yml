@@ -17,6 +17,7 @@ phases:
       - echo Build started on `date`
       - echo Nothing happening here yet
       - ls -la ../
+      - "export PYTHONPATH=."
       - ./build_scripts/local/unit_test.sh
   post_build:
     commands:
