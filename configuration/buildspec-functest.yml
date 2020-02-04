@@ -15,12 +15,10 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Nothing happening here yet
       - ./build_scripts/local/func_test.sh
   post_build:
     commands:
       - echo Build completed on `date`
-      - echo Nothing to do in postbuild phase
       - ls -la
 reports:
   FuncTests:
