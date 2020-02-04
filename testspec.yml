@@ -17,7 +17,9 @@ phases:
       - echo Build started on `date`
       - echo Nothing happening here yet
       - ls -la ../
-      - PYTHONPATH=. ./build_scripts/local/unit_test.sh
+      # - PYTHONPATH=. ./build_scripts/local/unit_test.sh
+      # - pipenv run pytest --junitxml=./pytest.xml
+      - pipenv run pytest
   post_build:
     commands:
       - echo Build completed on `date`
