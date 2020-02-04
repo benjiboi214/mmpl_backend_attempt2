@@ -9,3 +9,4 @@ pytest.xml
 coverage.xml
 flake8.xml
 db.sqlite3
+.coverage

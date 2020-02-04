@@ -11,7 +11,9 @@ pipenv run flake8 \
   --config=${FLAKE8_CONFIG_FILE:-"flake8.cfg"} .
 
 echo "#### Running Coverage ####"
-pipenv run coverage \
-  run -m pytest
-pipenv run coverage \
-  xml -o ${COVERAGE_REPORT_OUTPUT:-"./coverage.xml"}
+# pipenv run coverage \
+#   run -m pytest
+# pipenv run coverage \
+#   xml -o ${COVERAGE_REPORT_OUTPUT:-"./coverage.xml"}
+pipenv run pytest --cov=api \
+  --junitxml=${PYTEST_REPORT_OUTPUT:-"./coverage.xml"}
