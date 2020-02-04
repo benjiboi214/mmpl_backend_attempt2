@@ -6,6 +6,8 @@ pipenv run pytest \
 
 echo "#### Running Flake8 ####"
 pipenv run flake8 \
+  --config=${FLAKE8_CONFIG_FILE:-"flake8.cfg"} .
+pipenv run flake8 \
   --format junit-xml \
   --output-file=${FLAKE8_REPORT_OUTPUT:-"./flake8.xml"} \
   --config=${FLAKE8_CONFIG_FILE:-"flake8.cfg"} .
