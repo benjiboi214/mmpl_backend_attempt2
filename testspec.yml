@@ -30,7 +30,7 @@ reports:
     files:
       - coverage.xml
     base-directory: ./
-  Flake8Test:
+  Flake8Tests:
     files:
       - flake8.xml
     base-directory: ./
