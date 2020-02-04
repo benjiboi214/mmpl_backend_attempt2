@@ -9,7 +9,7 @@ port = os.getenv("DJANGO_EXTERNAL_PORT_NUM", "")
 opts = FirefoxOptions()
 opts.add_argument("--headless")
 
-browser = webdriver.Firefox(firefox_options=opts)
+browser = webdriver.Firefox(options=opts)
 browser.get(f'http://{host}:{port}')
 
 
