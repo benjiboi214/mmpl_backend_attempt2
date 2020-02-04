@@ -131,12 +131,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-
-## AUTH SETTINGS
-
+# AUTH SETTINGS
 # Rest Auth Use djangorestframework-jwt package
 REST_USE_JWT = True
 
 # Needed after adding django.contrib.sites for some reason
-SITE_ID = 1 
+SITE_ID = 1
