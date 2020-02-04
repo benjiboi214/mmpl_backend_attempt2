@@ -1,6 +1,6 @@
-#/bin/bash
+#!/bin/bash
 
-source .env
+. .env
 
 echo "#### Running PyTest ####"
 pipenv run pytest ./api \
