@@ -32,7 +32,7 @@ ALLOWED_HOSTS = [
 
 # From this package https://pypi.org/project/django-allow-cidr/
 # On the advice of this article https://mozilla.github.io/meao/2018/02/27/django-k8s-elb-health-checks/
-ALLOWED_CIDR_NETS = ['10.10.0.0/16']
+ALLOWED_CIDR_NETS = ['10.10.0.0/16', "127.0.0.0/16"]
 
 
 # Application definition

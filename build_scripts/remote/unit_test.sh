@@ -1,7 +1,5 @@
 #!/bin/bash
 
-. .env
-
 echo "#### Running PyTest ####"
 pipenv run pytest ./api \
   -c $PYTEST_UNIT_CONFIG_PATH \
