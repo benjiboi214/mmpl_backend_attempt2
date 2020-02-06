@@ -5,15 +5,15 @@
 echo "#### Running PyTest ####"
 pipenv run pytest ./api \
   -c $PYTEST_UNIT_CONFIG_PATH \
-  --junitxml=${PYTEST_UNIT_REPORT_PATH:-"./pytest-unit.xml"}
+  --junitxml=$PYTEST_UNIT_REPORT_PATH
 
 echo "#### Running Flake8 ####"
 pipenv run flake8 \
-  --config=${FLAKE8_CONFIG_PATH:-"flake8.cfg"} .
+  --config=$FLAKE8_CONFIG_PATH .
 pipenv run flake8 \
   --format junit-xml \
-  --output-file=${FLAKE8_REPORT_PATH:-"./flake8.xml"} \
-  --config=${FLAKE8_CONFIG_PATH:-"flake8.cfg"} .
+  --output-file=$FLAKE8_REPORT_PATH \
+  --config=$FLAKE8_CONFIG_PATH .
 
 echo "#### Running Coverage ####"
 # pipenv run coverage \
@@ -22,4 +22,4 @@ echo "#### Running Coverage ####"
 #   xml -o ${COVERAGE_REPORT_OUTPUT:-"./coverage.xml"}
 pipenv run pytest --cov=api ./api \
   -c $PYTEST_UNIT_CONFIG_PATH \
-  --junitxml=${COVERAGE_REPORT_PATH:-"./coverage.xml"}
+  --junitxml=$COVERAGE_REPORT_PATH
