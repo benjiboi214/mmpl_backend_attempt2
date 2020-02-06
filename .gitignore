@@ -1,3 +1,6 @@
+# Build environ
+.env
+
 # IDE Environ
 .vscode/
 Pipfile
