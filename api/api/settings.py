@@ -26,7 +26,8 @@ SECRET_KEY = '&nrl7c&sk)c%xwe++1ucpdc9@ip#k_&*ej%gi5@3rb92@x)@g^'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "django-bluegreen-example-226063929.ap-southeast-2.elb.amazonaws.com"
+    "django-bluegreen-example-226063929.ap-southeast-2.elb.amazonaws.com",
+    "staging.mmpl.systemiphus.com"
 ]
 
 # From this package https://pypi.org/project/django-allow-cidr/
