@@ -2,10 +2,14 @@ language: python
 python:
     - "3.8"
 env:
-    - EXAMPLE_ENV="wew"
+    - PYTEST_UNIT_CONFIG_PATH="./configuration/pytest-unit.ini"
+    - PYTEST_UNIT_REPORT_PATH="./pytest-unit.xml"
+    - FLAKE8_CONFIG_PATH="./configuration/flake8.cfg"
+    - FLAKE8_REPORT_PATH="./flake8.xml"
+    - COVERAGE_REPORT_PATH="./coverage.xml"
 install:
     - pip install pipenv
     - pipenv --bare install --ignore-pipfile --dev
 script:
-    - ./build_scripts/local/unit_test.sh
+    - ./build_scripts/remote/unit_test.sh
 # TODO - Maybe come back here and install coverage
