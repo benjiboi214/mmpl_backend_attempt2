@@ -11,6 +11,16 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import environ
+
+
+ROOT_DIR = (
+    environ.Path(__file__) - 3
+)  # (api/api/settings/base.py - 3 = mmpl_backend/)
+APPS_DIR = ROOT_DIR.path("api")
+
+env = environ.Env()
+env.read_env(str(ROOT_DIR.path(".env")))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -88,8 +98,12 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env("DJANGO_DB_NAME"),
+        'USER': env("DJANGO_DB_USER"),
+        'PASSWORD': env("DJANGO_DB_HOST"),
+        'HOST': env("DJANGO_DB_HOST"),
+        'PORT': env("DJANGO_DB_PORT"),
     }
 }
 
