@@ -1,5 +1,8 @@
+import os
+
 from .base import *  # noqa
-from .base import env
+from .base import BASE_DIR
+# from .base import env
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
