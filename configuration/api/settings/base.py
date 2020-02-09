@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import environ
+import os
+from ssm_parameter_store import EC2ParameterStore
 
 ROOT_DIR = (
     environ.Path(__file__) - 3
@@ -18,6 +20,18 @@ ROOT_DIR = (
 APPS_DIR = ROOT_DIR.path("mmpl_backend")
 
 env = environ.Env()
+
+DJANGO_READ_SSM_PARAMS = env.bool("DJANGO_READ_SSM_PARAMS", default=False)
+if DJANGO_READ_SSM_PARAMS:
+    store = EC2ParameterStore(
+        aws_access_key_id=env("AWS_SSM_ACCESS_KEY"),
+        aws_secret_access_key=env("AWS_SSM_SECRET_KEY"),
+        region_name=env("AWS_DEFAULT_REGION")
+    )
+    parameters = store.get_parameters_by_path('/mmpl-backend/dev/', recursive=True)
+    for key in parameters:
+        print(key + ": " + parameters[key])
+        os.environ[key] = parameters[key]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/

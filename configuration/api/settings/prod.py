@@ -9,7 +9,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': env("DJANGO_DB_NAME"),
         'USER': env("DJANGO_DB_USER"),
-        'PASSWORD': env("DJANGO_DB_HOST"),
+        'PASSWORD': env("DJANGO_DB_PASS"),
         'HOST': env("DJANGO_DB_HOST"),
         'PORT': env("DJANGO_DB_PORT"),
     }
