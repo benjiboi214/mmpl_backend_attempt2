@@ -33,6 +33,7 @@
         "FARGATE"
     ],
     "environment" : [
-        { "name" : "DJANGO_INTERNAL_PORT_NUM", "value" : "80" }
+        { "name" : "DJANGO_INTERNAL_PORT_NUM", "value" : "80" },
+        { "name" : "DJANGO_SETTINGS_MODULE", "value" : "configuration.api.settings.prod" }
     ]
 }
