@@ -14,7 +14,7 @@
                     "awslogs-stream-prefix": "ecs"
                 }
             },
-            "name": "mmpl_backend-api-staging-override",
+            "name": "mmpl_backend-api-staging",
             "portMappings": [
                 {
                     "containerPort": 80,
