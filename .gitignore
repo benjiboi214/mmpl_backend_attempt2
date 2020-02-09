@@ -1,5 +1,6 @@
 # Build environ
 .env
+.env*
 
 # IDE Environ
 .vscode/
