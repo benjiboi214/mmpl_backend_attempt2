@@ -31,11 +31,11 @@
             "secrets": [
                 { 
                     "name": "AWS_SSM_ACCESS_KEY",
-                    "valueFrom": "parameter/mmpl-backend/dev/AWS_SSM_ACCESS_KEY"
+                    "valueFrom": "/mmpl-backend/dev/AWS_SSM_ACCESS_KEY"
                 },
                 { 
                     "name": "AWS_SSM_SECRET_KEY",
-                    "valueFrom": "parameter/mmpl-backend/dev/AWS_SSM_SECRET_KEY"
+                    "valueFrom": "/mmpl-backend/dev/AWS_SSM_SECRET_KEY"
                 }
             ]
         }
