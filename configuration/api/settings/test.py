@@ -1,7 +1,7 @@
 import os
 
 from .base import *  # noqa
-from .base import BASE_DIR
+from .base import ROOT_DIR
 # from .base import env
 
 # Database
@@ -10,6 +10,6 @@ from .base import BASE_DIR
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        'NAME': os.path.join(ROOT_DIR, 'db.sqlite3')
     }
 }
