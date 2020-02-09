@@ -31,18 +31,18 @@
             "secrets": [
                 { 
                     "name": "AWS_SSM_ACCESS_KEY",
-                    "valueFrom": "arn:aws:secretsmanager:ap-southeast-2:413514076128:secret:/mmpl-backend/dev/AWS_SSM_ACCESS_KEY"
+                    "valueFrom": "arn:aws:ssm:ap-southeast-2:413514076128:parameter:/mmpl-backend/dev/AWS_SSM_ACCESS_KEY"
                 },
                 { 
                     "name": "AWS_SSM_SECRET_KEY",
-                    "valueFrom": "arn:aws:secretsmanager:ap-southeast-2:413514076128:secret:/mmpl-backend/dev/AWS_SSM_SECRET_KEY"
+                    "valueFrom": "arn:aws:ssm:ap-southeast-2:413514076128:parameter:/mmpl-backend/dev/AWS_SSM_SECRET_KEY"
                 }
             ]
         }
     ],
     "cpu": "256",
     "executionRoleArn": "arn:aws:iam::413514076128:role/ecsTaskExecutionRole",
-    "family": "fargate-task-definition",
+    "family": "mmpl_backend-staging",
     "memory": "512",
     "networkMode": "awsvpc",
     "requiresCompatibilities": [
