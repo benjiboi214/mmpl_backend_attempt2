@@ -24,7 +24,19 @@
             ],
             "environment": [
                 { "name" : "DJANGO_INTERNAL_PORT_NUM", "value" : "80" },
-                { "name" : "DJANGO_SETTINGS_MODULE", "value" : "configuration.api.settings.prod" }
+                { "name" : "DJANGO_SETTINGS_MODULE", "value" : "configuration.api.settings.prod" },
+                { "name" : "DJANGO_READ_SSM_PARAMS", "value" : "True" },
+                { "name" : "AWS_DEFAULT_REGION", "value" : "ap-southeast-2" }
+            ],
+            "secrets": [
+                { 
+                    "name": "AWS_SSM_ACCESS_KEY",
+                    "valueFrom": "arn:aws:secretsmanager:ap-southeast-2:413514076128:secret:/mmpl-backend/dev/AWS_SSM_ACCESS_KEY"
+                },
+                { 
+                    "name": "AWS_SSM_SECRET_KEY",
+                    "valueFrom": "arn:aws:secretsmanager:ap-southeast-2:413514076128:secret:/mmpl-backend/dev/AWS_SSM_SECRET_KEY"
+                }
             ]
         }
     ],
