@@ -9,12 +9,12 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/fargate-task-definition",
+                    "awslogs-group": "/ecs/mmpl_backend-api-staging",
                     "awslogs-region": "ap-southeast-2",
                     "awslogs-stream-prefix": "ecs"
                 }
             },
-            "name": "sample-website",
+            "name": "mmpl_backend-api-staging-override",
             "portMappings": [
                 {
                     "containerPort": 80,
