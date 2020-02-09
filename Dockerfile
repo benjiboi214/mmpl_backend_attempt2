@@ -10,6 +10,8 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY ./Pipfile.lock ./Pipfile.lock
+COPY ./configuration ./configuration
+COPY ./manage.py ./manage.py
 
 RUN pipenv --bare install --ignore-pipfile --dev
 
@@ -22,8 +24,6 @@ RUN sed -i 's/\r$//g' start.sh
 RUN chmod +x start.sh
 
 COPY /api ./api
-
-WORKDIR /app/api
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 
