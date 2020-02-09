@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: arn:aws:ecs:ap-southeast-2:413514076128:task-definition/mmpl_backend-staging
+        TaskDefinition: <TASK_DEFINITION>
         LoadBalancerInfo:
           ContainerName: "mmpl_backend-api-staging"
           ContainerPort: 80
