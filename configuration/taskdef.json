@@ -41,7 +41,7 @@
         }
     ],
     "cpu": "256",
-    "executionRoleArn": "arn:aws:iam::413514076128:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::413514076128:role/ecsTaskExecution-systemiphus",
     "family": "mmpl_backend-staging",
     "memory": "512",
     "networkMode": "awsvpc",
