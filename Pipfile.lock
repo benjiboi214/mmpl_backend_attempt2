@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7e20a6854ce5e08f1af5d1c919b5788ad0ad0c412d5f081c6953aac508128f50"
+            "sha256": "fedbb46dea92350f85d97d9478bc7d38dc8755b57ba9009b80357a511485f197"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -29,6 +29,7 @@
                 "sha256:0b9dc594e16a96ed7c6f37e1563ab3f113f130b3cc79efe8eea43097bf87fccb",
                 "sha256:e48ff93a3b6424c65675e1cbe08f7f3245b0128d1c27115cdcf51d432e9767d6"
             ],
+            "index": "pypi",
             "version": "==1.11.15"
         },
         "botocore": {
@@ -36,6 +37,7 @@
                 "sha256:2538065f9f5023eae3607e78fc5d8c595c9173ec02bc92410652078617c44ac1",
                 "sha256:554231b1690c8521e05a41e50184e43d62941fdf9351e658aea894649b879985"
             ],
+            "index": "pypi",
             "version": "==1.14.15"
         },
         "certifi": {
@@ -130,6 +132,7 @@
                 "sha256:9e4d7ecfc600058e07ba661411a2b7de2fd0fafa17d1a7f7361cd47b1175c827",
                 "sha256:a2aeea129088da402665e92e0b25b04b073c04b2dce4ab65caaa38b7ce2e1a99"
             ],
+            "index": "pypi",
             "version": "==0.15.2"
         },
         "idna": {
@@ -145,6 +148,7 @@
                 "sha256:3720a4b1bd659dd2eecad0666459b9788813e032b83e7ba58578e48254e0a0e6",
                 "sha256:bde2aef6f44302dfb30320115b17d030798de8c4110e28d5cf6cf91a7a31074c"
             ],
+            "index": "pypi",
             "version": "==0.9.4"
         },
         "netaddr": {
@@ -176,6 +180,7 @@
                 "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c",
                 "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"
             ],
+            "index": "pypi",
             "version": "==2.8.1"
         },
         "python3-openid": {
@@ -215,6 +220,7 @@
                 "sha256:2482b4259524933a022d59da830f51bd746db62f047d6eb213f2f8855dcb8a13",
                 "sha256:921a37e2aefc64145e7b73d50c71bb4f26f46e4c9f414dc648c6245ff92cf7db"
             ],
+            "index": "pypi",
             "version": "==0.3.3"
         },
         "six": {
