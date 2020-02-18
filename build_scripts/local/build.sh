@@ -1,3 +1,3 @@
-#/bin/bash
+#!/bin/bash
 
-docker build .
+docker build -f build_config/local/django/Dockerfile .

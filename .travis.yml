@@ -2,9 +2,9 @@ language: python
 python:
     - "3.8"
 env:
-    PYTEST_UNIT_CONFIG_PATH="./configuration/pytest-unit.ini"
+    PYTEST_UNIT_CONFIG_PATH="./configuration/tests/pytest-unit.ini"
     PYTEST_UNIT_REPORT_PATH="./pytest-unit.xml"
-    FLAKE8_CONFIG_PATH="./configuration/flake8.cfg"
+    FLAKE8_CONFIG_PATH="./configuration/tests/flake8.cfg"
     FLAKE8_REPORT_PATH="./flake8.xml"
     COVERAGE_REPORT_PATH="./coverage.xml"
 install:
