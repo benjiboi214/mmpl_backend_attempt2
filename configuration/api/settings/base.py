@@ -10,11 +10,28 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+import environ
 import os
+from ssm_parameter_store import EC2ParameterStore
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = (
+    environ.Path(__file__) - 3
+)  # (mmpl_backend/config/settings/base.py - 3 = mmpl_backend/)
+APPS_DIR = ROOT_DIR.path("mmpl_backend")
 
+env = environ.Env()
+
+DJANGO_READ_SSM_PARAMS = env.bool("DJANGO_READ_SSM_PARAMS", default=False)
+if DJANGO_READ_SSM_PARAMS:
+    store = EC2ParameterStore(
+        aws_access_key_id=env("AWS_SSM_ACCESS_KEY"),
+        aws_secret_access_key=env("AWS_SSM_SECRET_KEY"),
+        region_name=env("AWS_DEFAULT_REGION")
+    )
+    parameters = store.get_parameters_by_path('/mmpl-backend/dev/', recursive=True)
+    for key in parameters:
+        print(key + ": " + parameters[key])
+        os.environ[key] = parameters[key]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -26,12 +43,13 @@ SECRET_KEY = '&nrl7c&sk)c%xwe++1ucpdc9@ip#k_&*ej%gi5@3rb92@x)@g^'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "django-bluegreen-example-226063929.ap-southeast-2.elb.amazonaws.com"
+    "django-bluegreen-example-226063929.ap-southeast-2.elb.amazonaws.com",
+    "staging.mmpl.systemiphus.com"
 ]
 
 # From this package https://pypi.org/project/django-allow-cidr/
 # On the advice of this article https://mozilla.github.io/meao/2018/02/27/django-k8s-elb-health-checks/
-ALLOWED_CIDR_NETS = ['10.10.0.0/16']
+ALLOWED_CIDR_NETS = ['10.10.0.0/16', "127.0.0.0/16"]
 
 
 # Application definition
@@ -82,17 +100,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'api.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -131,9 +138,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-
-## AUTH SETTINGS
-
+# AUTH SETTINGS
 # Rest Auth Use djangorestframework-jwt package
 REST_USE_JWT = True
+
+# Needed after adding django.contrib.sites for some reason
+SITE_ID = 1

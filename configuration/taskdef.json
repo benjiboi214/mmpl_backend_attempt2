@@ -1,0 +1,51 @@
+{
+    "containerDefinitions": [
+        {
+            "command": [
+                "/app/start.sh"
+            ],
+            "essential": true,
+            "image": "<IMAGE1_NAME>",
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/mmpl_backend-api-staging",
+                    "awslogs-region": "ap-southeast-2",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "name": "mmpl_backend-api-staging",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "environment": [
+                { "name" : "DJANGO_INTERNAL_PORT_NUM", "value" : "80" },
+                { "name" : "DJANGO_SETTINGS_MODULE", "value" : "configuration.api.settings.prod" },
+                { "name" : "DJANGO_READ_SSM_PARAMS", "value" : "True" },
+                { "name" : "AWS_DEFAULT_REGION", "value" : "ap-southeast-2" }
+            ],
+            "secrets": [
+                { 
+                    "name": "AWS_SSM_ACCESS_KEY",
+                    "valueFrom": "/mmpl-backend/dev/AWS_SSM_ACCESS_KEY"
+                },
+                { 
+                    "name": "AWS_SSM_SECRET_KEY",
+                    "valueFrom": "/mmpl-backend/dev/AWS_SSM_SECRET_KEY"
+                }
+            ]
+        }
+    ],
+    "cpu": "256",
+    "executionRoleArn": "arn:aws:iam::413514076128:role/ecsTaskExecution-systemiphus",
+    "family": "mmpl_backend-staging",
+    "memory": "512",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ]
+}

@@ -5,7 +5,8 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'configuration.api.settings.test')
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -14,6 +15,11 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
+    # This allows easy placement of apps within the interior
+    # api directory.
+    current_path = os.path.dirname(os.path.abspath(__file__))
+    sys.path.append(os.path.join(current_path, "api"))
     execute_from_command_line(sys.argv)
 
 

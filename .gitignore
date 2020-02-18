@@ -1,5 +1,20 @@
-geckodriver.log
-Pipfile
-.vscode/
+# Build environ
 .env
+.env*
+
+# IDE Environ
+.vscode/
+Pipfile
+
+# Test Output
+geckodriver.log
+pytest.xml
+pytest-unit.xml
+pytest-func.xml
+coverage.xml
+flake8.xml
 db.sqlite3
+.coverage
+
+# Artifcats
+export.sql
