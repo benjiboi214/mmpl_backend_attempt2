@@ -15,3 +15,6 @@ coverage.xml
 flake8.xml
 db.sqlite3
 .coverage
+
+# Artifcats
+export.sql

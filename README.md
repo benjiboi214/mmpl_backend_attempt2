@@ -67,3 +67,40 @@ Requirements:
 - Load Balancer
 - Execution Roles
 - 
+
+
+
+SSH Script
+
+LOCAL
+VPN MUST BE ON
+SSH to VPN host
+get psql dump onto vpn host
+copy from vpn host to local
+// GUESSES
+dump db locally
+import db locally
+run migrations
+check exit code
+
+REMOTE
+connect to psql, copy db from target to branch name
+run migrations
+check outcome
+remove new db
+
+
+
+
+ENV Management
+Prod - AWS Container
+All app env vars will come from SSM, except DJANGO_INTERNAL_PORT_NUM, DJANGO_SETTINGS_MODULE, DJANGO_READ_SSM_PARAMS, AWS_DEFAULT_REGION as they are either used in the exec script for the container or are required for telling the app to go to SSM for data.
+
+Test - Docker container
+Used for local dev and validating the build scripts.
+Run with the DJANGO_SETTINGS_MODULE as prod, as prod contains the DB Details
+This could be separated out sometime soon to its own settings module once we start locking down the prod settings module for GA use.
+
+Test - Plain Python
+Used for running unit and functional tests, as well as validating migrations.
+Run with the DJANGO_SETTINGS_MODULE as test so as to ensure all settings are relevant.
