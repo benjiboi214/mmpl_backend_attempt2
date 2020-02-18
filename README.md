@@ -104,3 +104,6 @@ This could be separated out sometime soon to its own settings module once we sta
 Test - Plain Python
 Used for running unit and functional tests, as well as validating migrations.
 Run with the DJANGO_SETTINGS_MODULE as test so as to ensure all settings are relevant.
+
+
+Separating out the build envs
