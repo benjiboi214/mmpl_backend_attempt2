@@ -19,11 +19,11 @@ COPY ./manage.py ./manage.py
 RUN pipenv --bare install --ignore-pipfile --dev
 RUN pipenv install psycopg2-binary 
 
-COPY ./entrypoint.sh entrypoint.sh
+COPY ./build_config/local/django/entrypoint.sh entrypoint.sh
 RUN sed -i 's/\r$//g' entrypoint.sh
 RUN chmod +x entrypoint.sh
 
-COPY ./start.sh start.sh
+COPY ./build_config/local/django/start.sh start.sh
 RUN sed -i 's/\r$//g' start.sh
 RUN chmod +x start.sh
 
