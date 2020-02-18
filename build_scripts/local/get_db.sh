@@ -1,3 +1,5 @@
+#!/bin/bash\
+
 ./build_scripts/local/stop.sh
 
 ## Gets Data from remote PSQL instance
