@@ -36,6 +36,26 @@
                 { 
                     "name": "AWS_SSM_SECRET_KEY",
                     "valueFrom": "/mmpl-backend/dev/AWS_SSM_SECRET_KEY"
+                },
+                { 
+                    "name": "DJANGO_DB_NAME",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_NAME"
+                },
+                { 
+                    "name": "DJANGO_DB_USER",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_USER"
+                },
+                { 
+                    "name": "DJANGO_DB_PASS",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_PASS"
+                },
+                { 
+                    "name": "DJANGO_DB_HOST",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_HOST"
+                },
+                { 
+                    "name": "DJANGO_DB_PORT",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_PORT"
                 }
             ]
         }
