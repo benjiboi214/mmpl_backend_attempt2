@@ -26,7 +26,7 @@ try:
     psycopg2.connect(
         dbname="${DJANGO_DB_NAME}",
         user="${DJANGO_DB_USER}",
-        password=${DJANGO_DB_PASS},
+        password="${DJANGO_DB_PASS}",
         host="${DJANGO_DB_HOST}",
         port="${DJANGO_DB_PORT}",
     )
