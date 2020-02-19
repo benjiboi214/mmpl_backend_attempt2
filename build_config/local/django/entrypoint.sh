@@ -26,11 +26,13 @@ try:
     psycopg2.connect(
         dbname="${DJANGO_DB_NAME}",
         user="${DJANGO_DB_USER}",
-        password="${DJANGO_DB_PASS}",
+        password=${DJANGO_DB_PASS},
         host="${DJANGO_DB_HOST}",
         port="${DJANGO_DB_PORT}",
     )
-except psycopg2.OperationalError:
+except psycopg2.OperationalError as e:
+    print("ERROR!")
+    print(e)
     sys.exit(-1)
 sys.exit(0)
 

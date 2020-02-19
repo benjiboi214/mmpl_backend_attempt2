@@ -6,6 +6,7 @@ RUN apk update \
   # psycopg2 dependencies
   && apk add --virtual build-deps gcc python3-dev musl-dev \
   && apk add postgresql-dev \
+  && pip install psycopg2 --no-binary psycopg2 \
   # Install pipenv
   && pip install pipenv
 
