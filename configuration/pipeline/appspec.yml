@@ -5,7 +5,7 @@ Resources:
       Properties:
         TaskDefinition: <TASK_DEFINITION>
         LoadBalancerInfo:
-          ContainerName: "mmpl_backend-api-staging"
+          ContainerName: "mmpl_backend-traefik-staging"
           ContainerPort: 80
 # Optional properties
         PlatformVersion: "LATEST"
