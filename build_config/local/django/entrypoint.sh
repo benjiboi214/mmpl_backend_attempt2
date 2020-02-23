@@ -19,9 +19,7 @@ export DATABASE_URL="postgres://${DJANGO_DB_USER}:${DJANGO_DB_PASS}@${DJANGO_DB_
 postgres_ready() {
 python << END
 import sys
-
 import psycopg2
-
 try:
     psycopg2.connect(
         dbname="${DJANGO_DB_NAME}",
@@ -35,7 +33,6 @@ except psycopg2.OperationalError as e:
     print(e)
     sys.exit(-1)
 sys.exit(0)
-
 END
 }
 until postgres_ready; do
