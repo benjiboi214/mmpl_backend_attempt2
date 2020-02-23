@@ -17,13 +17,13 @@
             "name": "mmpl_backend-api-staging",
             "portMappings": [
                 {
-                    "containerPort": 80,
-                    "hostPort": 80,
+                    "containerPort": 8080,
+                    "hostPort": 8080,
                     "protocol": "tcp"
                 }
             ],
             "environment": [
-                { "name" : "DJANGO_INTERNAL_PORT_NUM", "value" : "80" },
+                { "name" : "DJANGO_INTERNAL_PORT_NUM", "value" : "8080" },
                 { "name" : "DJANGO_SETTINGS_MODULE", "value" : "configuration.api.settings.prod" },
                 { "name" : "DJANGO_READ_SSM_PARAMS", "value" : "True" },
                 { "name" : "AWS_DEFAULT_REGION", "value" : "ap-southeast-2" }
@@ -36,6 +36,46 @@
                 { 
                     "name": "AWS_SSM_SECRET_KEY",
                     "valueFrom": "/mmpl-backend/dev/AWS_SSM_SECRET_KEY"
+                },
+                { 
+                    "name": "DJANGO_DB_NAME",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_NAME"
+                },
+                { 
+                    "name": "DJANGO_DB_USER",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_USER"
+                },
+                { 
+                    "name": "DJANGO_DB_PASS",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_PASS"
+                },
+                { 
+                    "name": "DJANGO_DB_HOST",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_HOST"
+                },
+                { 
+                    "name": "DJANGO_DB_PORT",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_PORT"
+                }
+            ]
+        },
+        {
+            "essential": true,
+            "image": "<IMAGE2_NAME>",
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/mmpl_backend-traefik-staging",
+                    "awslogs-region": "ap-southeast-2",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "name": "mmpl_backend-traefik-staging",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
                 }
             ]
         }

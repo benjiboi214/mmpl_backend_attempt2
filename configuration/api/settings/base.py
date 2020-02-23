@@ -30,7 +30,6 @@ if DJANGO_READ_SSM_PARAMS:
     )
     parameters = store.get_parameters_by_path('/mmpl-backend/dev/', recursive=True)
     for key in parameters:
-        print(key + ": " + parameters[key])
         os.environ[key] = parameters[key]
 
 # Quick-start development settings - unsuitable for production

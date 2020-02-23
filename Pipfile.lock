@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fedbb46dea92350f85d97d9478bc7d38dc8755b57ba9009b80357a511485f197"
+            "sha256": "6e769a70fea7fd86a5cf5a3727701ab23ce1389ffa1c589b1b19673553247266"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -95,14 +95,6 @@
             "index": "pypi",
             "version": "==0.4.5"
         },
-        "django-extensions": {
-            "hashes": [
-                "sha256:4524eca892d23fa6e93b0620901983b287ff5dc806f1b978d6a98541f06b9471",
-                "sha256:936e8e3962024d3c75ea54f4e0248002404ca7ca7fb698430e60b06b5555b4e7"
-            ],
-            "index": "pypi",
-            "version": "==2.2.6"
-        },
         "django-rest-auth": {
             "hashes": [
                 "sha256:f11e12175dafeed772f50d740d22caeab27e99a3caca24ec65e66a8d6de16571"
@@ -134,6 +126,14 @@
             ],
             "index": "pypi",
             "version": "==0.15.2"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:1904bb2b8a43658807108d59c3f3d56c2b6121a701161de0ddf9ad140073c626",
+                "sha256:cd4a810dd51bf497552cf3f863b575dabd73d6ad6a91075b65936b151cbf4f9c"
+            ],
+            "index": "pypi",
+            "version": "==20.0.4"
         },
         "idna": {
             "hashes": [
@@ -316,6 +316,21 @@
             ],
             "index": "pypi",
             "version": "==5.0.3"
+        },
+        "django-coverage-plugin": {
+            "hashes": [
+                "sha256:d53cbf3828fd83d6b89ff7292c6805de5274e36411711692043e67bcde25ae0c"
+            ],
+            "index": "pypi",
+            "version": "==1.8.0"
+        },
+        "django-extensions": {
+            "hashes": [
+                "sha256:4524eca892d23fa6e93b0620901983b287ff5dc806f1b978d6a98541f06b9471",
+                "sha256:936e8e3962024d3c75ea54f4e0248002404ca7ca7fb698430e60b06b5555b4e7"
+            ],
+            "index": "pypi",
+            "version": "==2.2.6"
         },
         "entrypoints": {
             "hashes": [

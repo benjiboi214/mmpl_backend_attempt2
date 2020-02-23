@@ -1,0 +1,23 @@
+logLevel = "DEBUG"
+defaultEntryPoints = ["http"]
+
+# Entrypoints, http and https
+[entryPoints]
+  # http should be redirected to https
+  [entryPoints.http]
+  address = ":80"
+
+[file]
+[backends]
+  [backends.django]
+    [backends.django.servers.server1]
+      url = "http://localhost:8080"
+
+[frontends]
+  [frontends.staging]
+    backend = "django"
+    passHostHeader = true
+    [frontends.staging.headers]
+      HostsProxyHeaders = ['X-CSRFToken']
+    [frontends.staging.routes.dr1]
+      rule = "PathPrefix: /"
