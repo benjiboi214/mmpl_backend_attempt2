@@ -15,7 +15,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - ./build_scripts/remote/build.sh traefik
+      - ./build_scripts/remote/build.sh $BUILD_MODE
   post_build:
     commands:
       - echo Build completed on `date`
