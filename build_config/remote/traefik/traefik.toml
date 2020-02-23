@@ -11,7 +11,7 @@ defaultEntryPoints = ["http"]
 [backends]
   [backends.django]
     [backends.django.servers.server1]
-      url = "http://django:5000"
+      url = "http://mmpl_backend-api-staging:8080"
 
 [frontends]
   [frontends.staging]
