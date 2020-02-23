@@ -20,4 +20,4 @@ defaultEntryPoints = ["http"]
     [frontends.staging.headers]
       HostsProxyHeaders = ['X-CSRFToken']
     [frontends.staging.routes.dr1]
-      rule = "Host:staging.mmpl.systemiphus.com"
+      rule = "PathPrefix: /"
