@@ -24,8 +24,8 @@ env = environ.Env()
 DJANGO_READ_SSM_PARAMS = env.bool("DJANGO_READ_SSM_PARAMS", default=False)
 if DJANGO_READ_SSM_PARAMS:
     store = EC2ParameterStore(
-        aws_access_key_id=env("AWS_SSM_ACCESS_KEY"),
-        aws_secret_access_key=env("AWS_SSM_SECRET_KEY"),
+        # aws_access_key_id=env("AWS_SSM_ACCESS_KEY"),
+        # aws_secret_access_key=env("AWS_SSM_SECRET_KEY"),
         region_name=env("AWS_DEFAULT_REGION")
     )
     parameters = store.get_parameters_by_path('/mmpl-backend/dev/', recursive=True)
