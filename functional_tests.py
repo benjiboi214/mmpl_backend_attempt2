@@ -15,4 +15,4 @@ browser.get(f'{protocol}://{host}:{port}')
 
 
 def test_deployment_successful():
-    assert 'Page not found' in browser.title
+    assert 'Under Construction' in browser.title

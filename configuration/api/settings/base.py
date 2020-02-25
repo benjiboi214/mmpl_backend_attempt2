@@ -15,9 +15,9 @@ import os
 from ssm_parameter_store import EC2ParameterStore
 
 ROOT_DIR = (
-    environ.Path(__file__) - 3
-)  # (mmpl_backend/config/settings/base.py - 3 = mmpl_backend/)
-APPS_DIR = ROOT_DIR.path("mmpl_backend")
+    environ.Path(__file__) - 4
+)  # (configuration/api/settings/base.py - 3 = mmpl_backend/)
+APPS_DIR = ROOT_DIR.path("api")
 
 env = environ.Env()
 
@@ -75,12 +75,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'api.urls'
+ROOT_URLCONF = 'configuration.api.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(APPS_DIR.path("templates"))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -93,7 +93,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'api.wsgi.application'
+WSGI_APPLICATION = 'configuration.api.wsgi.application'
 
 
 # Password validation
