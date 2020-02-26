@@ -15,9 +15,9 @@ import os
 from ssm_parameter_store import EC2ParameterStore
 
 ROOT_DIR = (
-    environ.Path(__file__) - 3
-)  # (mmpl_backend/config/settings/base.py - 3 = mmpl_backend/)
-APPS_DIR = ROOT_DIR.path("mmpl_backend")
+    environ.Path(__file__) - 4
+)  # (configuration/api/settings/base.py - 3 = mmpl_backend/)
+APPS_DIR = ROOT_DIR.path("api")
 
 env = environ.Env()
 
@@ -39,7 +39,7 @@ if DJANGO_READ_SSM_PARAMS:
 SECRET_KEY = '&nrl7c&sk)c%xwe++1ucpdc9@ip#k_&*ej%gi5@3rb92@x)@g^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DJANGO_DEBUG", False)
 
 ALLOWED_HOSTS = [
     "django-bluegreen-example-226063929.ap-southeast-2.elb.amazonaws.com",
@@ -61,10 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'rest_auth.registration',
+    'django.contrib.sites'
 ]
 
 MIDDLEWARE = [
@@ -78,12 +75,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'api.urls'
+ROOT_URLCONF = 'configuration.api.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(APPS_DIR.path("templates"))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,7 +93,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'api.wsgi.application'
+WSGI_APPLICATION = 'configuration.api.wsgi.application'
 
 
 # Password validation
@@ -132,10 +129,19 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-STATIC_URL = '/static/'
+# STATIC
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+STATIC_ROOT = str(ROOT_DIR("staticfiles"))
+# https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = "/static/"
+# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = [str(APPS_DIR.path("static"))]
+# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 
 # AUTH SETTINGS
 # Rest Auth Use djangorestframework-jwt package
