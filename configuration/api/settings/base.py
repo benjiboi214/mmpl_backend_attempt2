@@ -39,7 +39,7 @@ if DJANGO_READ_SSM_PARAMS:
 SECRET_KEY = '&nrl7c&sk)c%xwe++1ucpdc9@ip#k_&*ej%gi5@3rb92@x)@g^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DJANGO_DEBUG", False)
 
 ALLOWED_HOSTS = [
     "django-bluegreen-example-226063929.ap-southeast-2.elb.amazonaws.com",
