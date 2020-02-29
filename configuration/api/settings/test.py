@@ -1,7 +1,8 @@
 import os
 
 from .base import *  # noqa
-from .base import ROOT_DIR
+from .base import ROOT_DIR, env
+
 # from .base import env
 
 
