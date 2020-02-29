@@ -19,10 +19,12 @@ ROOT_DIR = (
 )  # (configuration/api/settings/base.py - 3 = mmpl_backend/)
 APPS_DIR = ROOT_DIR.path("api")
 
-env = environ.Env()
+env = environ.Env(
+    USE_DOCKER=(bool, False),
+    DJANGO_READ_SSM_PARAMS=(bool, False)
+)
 
-DJANGO_READ_SSM_PARAMS = env.bool("DJANGO_READ_SSM_PARAMS", default=False)
-if DJANGO_READ_SSM_PARAMS:
+if env.bool("DJANGO_READ_SSM_PARAMS"):
     store = EC2ParameterStore(
         aws_access_key_id=env("AWS_SSM_ACCESS_KEY"),
         aws_secret_access_key=env("AWS_SSM_SECRET_KEY"),
