@@ -63,7 +63,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'django.contrib.sites'
+    'django.contrib.sites',
+    'api.users',
+    'api.home'
 ]
 
 MIDDLEWARE = [
@@ -151,3 +153,7 @@ REST_USE_JWT = True
 
 # Needed after adding django.contrib.sites for some reason
 SITE_ID = 1
+
+DJANGO_SU_NAME = env('DJANGO_SU_NAME', default='admin')
+DJANGO_SU_EMAIL = env('DJANGO_SU_EMAIL', default='password')
+DJANGO_SU_PASSWORD = env('DJANGO_SU_PASSWORD', default='example@mail.com')
