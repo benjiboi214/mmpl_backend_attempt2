@@ -28,6 +28,10 @@ COPY ./build_config/remote/django/start.sh start.sh
 RUN sed -i 's/\r$//g' start.sh
 RUN chmod +x start.sh
 
+COPY ./build_config/remote/django/migrate.sh migrate.sh
+RUN sed -i 's/\r$//g' migrate.sh
+RUN chmod +x migrate.sh
+
 COPY /api ./api
 
 ENTRYPOINT ["/app/entrypoint.sh"]
