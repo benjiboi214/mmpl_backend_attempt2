@@ -1,0 +1,64 @@
+{
+    "containerDefinitions": [
+        {
+            "command": [
+                "/app/migrate.sh"
+            ],
+            "essential": true,
+            "image": "413514076128.dkr.ecr.ap-southeast-2.amazonaws.com/docker_django_aws_deploy:latest",
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/mmpl_backend-api-staging-migration",
+                    "awslogs-region": "ap-southeast-2",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "name": "mmpl_backend-api-staging-migration",
+            "portMappings": [],
+            "environment": [
+                { "name" : "DJANGO_SETTINGS_MODULE", "value" : "configuration.api.settings.prod" },
+                { "name" : "DJANGO_READ_SSM_PARAMS", "value" : "True" },
+                { "name" : "AWS_DEFAULT_REGION", "value" : "ap-southeast-2" }
+            ],
+            "secrets": [
+                { 
+                    "name": "AWS_SSM_ACCESS_KEY",
+                    "valueFrom": "/mmpl-backend/dev/AWS_SSM_ACCESS_KEY"
+                },
+                { 
+                    "name": "AWS_SSM_SECRET_KEY",
+                    "valueFrom": "/mmpl-backend/dev/AWS_SSM_SECRET_KEY"
+                },
+                { 
+                    "name": "DJANGO_DB_NAME",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_NAME"
+                },
+                { 
+                    "name": "DJANGO_DB_USER",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_USER"
+                },
+                { 
+                    "name": "DJANGO_DB_PASS",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_PASS"
+                },
+                { 
+                    "name": "DJANGO_DB_HOST",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_HOST"
+                },
+                { 
+                    "name": "DJANGO_DB_PORT",
+                    "valueFrom": "/mmpl-backend/dev/DJANGO_DB_PORT"
+                }
+            ]
+        }
+    ],
+    "cpu": "256",
+    "executionRoleArn": "arn:aws:iam::413514076128:role/ecsTaskExecution-systemiphus",
+    "family": "mmpl_backend-staging-migration",
+    "memory": "512",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ]
+}
