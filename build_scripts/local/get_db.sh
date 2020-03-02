@@ -1,4 +1,4 @@
-#!/bin/bash\
+#!/bin/bash
 
 ./build_scripts/local/stop.sh
 
@@ -20,6 +20,7 @@ export PGUSER=mmpl_backend
 
 # Drops DB named as current branch if exists
 DB_NAME=`git rev-parse --abbrev-ref HEAD | sed 's/\//_/'`
+echo "Putting DB in: $DB_NAME"
 psql -c "drop database $DB_NAME;"
 
 # Create target DB
