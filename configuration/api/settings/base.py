@@ -34,6 +34,7 @@ if env.bool("DJANGO_READ_SSM_PARAMS"):
     parameters = store.get_parameters_by_path(env("DJANGO_SSM_PARAMS_PATH"), recursive=True)
     for key in parameters:
         os.environ[key] = parameters[key]
+        print("DEBUG: " + key + " - " + parameters[key])
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
