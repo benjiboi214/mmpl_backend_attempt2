@@ -26,6 +26,7 @@
                 { "name" : "DJANGO_INTERNAL_PORT_NUM", "value" : "8080" },
                 { "name" : "DJANGO_SETTINGS_MODULE", "value" : "configuration.api.settings.prod" },
                 { "name" : "DJANGO_READ_SSM_PARAMS", "value" : "True" },
+                { "name" : "DJANGO_SSM_PARAMS_PATH", "value" : "/mmpl-backend/dev/" },
                 { "name" : "AWS_DEFAULT_REGION", "value" : "ap-southeast-2" }
             ],
             "secrets": [

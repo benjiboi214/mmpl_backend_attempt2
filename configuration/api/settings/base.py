@@ -21,7 +21,8 @@ APPS_DIR = ROOT_DIR.path("api")
 
 env = environ.Env(
     USE_DOCKER=(bool, False),
-    DJANGO_READ_SSM_PARAMS=(bool, False)
+    DJANGO_READ_SSM_PARAMS=(bool, False),
+    DJANGO_SSM_PARAMS_PATH=(str, "/mmpl-backend/dev/")
 )
 
 if env.bool("DJANGO_READ_SSM_PARAMS"):
@@ -30,7 +31,7 @@ if env.bool("DJANGO_READ_SSM_PARAMS"):
         aws_secret_access_key=env("AWS_SSM_SECRET_KEY"),
         region_name=env("AWS_DEFAULT_REGION")
     )
-    parameters = store.get_parameters_by_path('/mmpl-backend/dev/', recursive=True)
+    parameters = store.get_parameters_by_path(env("DJANGO_SSM_PARAMS_PATH"), recursive=True)
     for key in parameters:
         os.environ[key] = parameters[key]
 
@@ -146,6 +147,15 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
+
+# ADMIN
+# ------------------------------------------------------------------------------
+# Django Admin URL.
+ADMIN_URL = "admin/"
+# https://docs.djangoproject.com/en/dev/ref/settings/#admins
+ADMINS = [("""Ben Elliot""", "benjiboi214@gmail.com")]
+# https://docs.djangoproject.com/en/dev/ref/settings/#managers
+MANAGERS = ADMINS
 
 # AUTH SETTINGS
 # Rest Auth Use djangorestframework-jwt package
