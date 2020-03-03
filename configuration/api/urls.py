@@ -22,7 +22,9 @@ from home.views import HomePageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomePageView.as_view(), name='index')
+    path('', HomePageView.as_view(), name='index'),
+    # Django Admin, use {% url 'admin:index' %}
+    path(settings.ADMIN_URL, admin.site.urls)
 ]
 
 if settings.DEBUG:

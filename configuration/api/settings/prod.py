@@ -65,3 +65,9 @@ class MediaRootS3Boto3Storage(S3Boto3Storage):
 # endregion
 DEFAULT_FILE_STORAGE = "configuration.api.settings.prod.MediaRootS3Boto3Storage"
 MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/"
+
+
+# ADMIN
+# ------------------------------------------------------------------------------
+# Django Admin URL regex.
+ADMIN_URL = env("DJANGO_ADMIN_URL")
