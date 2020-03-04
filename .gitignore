@@ -15,6 +15,8 @@ coverage.xml
 flake8.xml
 db.sqlite3
 .coverage
+.pytest-cache
 
 # Artifcats
 export.sql
+.aws-sam
