@@ -2,6 +2,10 @@ import json
 
 # import requests
 
+import boto3
+
+client = boto3.client('codedeploy')
+
 
 def lambda_handler(event, context):
     """Sample pure Lambda function
@@ -25,6 +29,12 @@ def lambda_handler(event, context):
         Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
     """
 
+    print("EVENT!")
+    print(event)
+
+    print ("CONTEXT!")
+    print(context)
+
     # try:
     #     ip = requests.get("http://checkip.amazonaws.com/")
     # except requests.RequestException as e:
@@ -32,6 +42,12 @@ def lambda_handler(event, context):
     #     print(e)
 
     #     raise e
+
+    # response = client.put_lifecycle_event_hook_execution_status(
+    #     deploymentId='string',
+    #     lifecycleEventHookExecutionId='string',
+    #     status='Pending'|'InProgress'|'Succeeded'|'Failed'|'Skipped'|'Unknown'
+    # )
 
     return {
         "statusCode": 200,
