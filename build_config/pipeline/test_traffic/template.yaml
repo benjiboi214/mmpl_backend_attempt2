@@ -8,21 +8,18 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 600
+    Timeout: 30
+    MemorySize: 512
 
 Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       Role: arn:aws:iam::413514076128:role/codePipelineLambdaExecutionRole
-      CodeUri: hello_world/
-      Handler: app.lambda_handler
-      Runtime: python3.8
-
-Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  HelloWorldFunction:
-    Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
+      CodeUri: function/
+      Handler: src.lambda_function.lambda_handler
+      Runtime: python3.6
+      Environment:
+        Variables: 
+          PATH: /var/task/bin
+          PYTHONPATH: /var/task:/var/task/src:/var/task/lib
