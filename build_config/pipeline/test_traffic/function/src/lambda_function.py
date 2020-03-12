@@ -1,24 +1,30 @@
-import time
+import os
+import pprint
+
+import importlib_metadata
 
 from webdriver_wrapper import WebDriverWrapper
 from selenium.webdriver.common.keys import Keys
 
+import pytest
+from functional_tests import NewVisitorTest
 
 def lambda_handler(*args, **kwargs):
-    driver = WebDriverWrapper()
+    driver = WebDriverWrapper().driver
+  
+    # Get the list of user's 
+    # environment variables 
+    env_var = os.environ 
+    
+    # Print the list of user's 
+    # environment variables 
+    print("User's Environment variable:") 
+    pprint.pprint(dict(env_var), width = 1) 
 
-    driver.get_url('https://www.google.es/')
 
-    driver.set_input_value('//input[@name="q"]', '21 buttons')
-
-    button = driver.find("//input[@name='btnK']")
-    button.send_keys(Keys.TAB)
-    driver.click('//input[@name="btnK"]')
-
-    first_google_result_title = driver.get_inner_html('(//div[@class="rc"]//a)[1]')
-
-    print("--------------------------")
-    print(first_google_result_title)
-    print("--------------------------")
-
-    driver.close()
+    exit_code = pytest.main([
+        "-p", "no:cacheprovider",
+        "/var/task/src/functional_tests.py"
+    ], plugins=[])
+    print("EXIT CODE")
+    print(exit_code)

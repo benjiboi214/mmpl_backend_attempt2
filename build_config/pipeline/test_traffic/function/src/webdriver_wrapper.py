@@ -53,6 +53,7 @@ class WebDriverWrapper:
         chrome_options.binary_location = os.getcwd() + "/bin/headless-chromium"
 
         self._driver = webdriver.Chrome(chrome_options=chrome_options)
+        self.driver = self._driver
 
         if self.download_location:
             self.enable_download_in_headless_chrome()
