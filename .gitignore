@@ -20,3 +20,6 @@ db.sqlite3
 # Artifcats
 export.sql
 .aws-sam
+
+# Chrome Binaries
+build_config/pipeline/test_traffic/function/bin/
