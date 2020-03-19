@@ -58,13 +58,13 @@ USE_L10N = True
 USE_TZ = True
 
 # Commented out as DB is in prod and test settings files
-# # DATABASES
-# # ------------------------------------------------------------------------------
-# # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-# DATABASES = {
-#     'default': env.db('DATABASE_URL'),
-# }
-# DATABASES['default']['ATOMIC_REQUESTS'] = True
+# DATABASES
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#databases
+DATABASES = {
+    'default': {}
+}
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
 # URLS
