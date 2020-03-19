@@ -3,28 +3,40 @@ import pprint
 
 import importlib_metadata
 
-from webdriver_wrapper import WebDriverWrapper
 from selenium.webdriver.common.keys import Keys
+import boto3
+
 
 import pytest
 from functional_tests import NewVisitorTest
 
-def lambda_handler(*args, **kwargs):
-    driver = WebDriverWrapper().driver
-  
-    # Get the list of user's 
-    # environment variables 
-    env_var = os.environ 
-    
-    # Print the list of user's 
-    # environment variables 
-    print("User's Environment variable:") 
-    pprint.pprint(dict(env_var), width = 1) 
+client = boto3.client('codedeploy')
 
+
+def lambda_handler(event, context, *args, **kwargs):
+    # Get and print the environment for debugging.
+    env_var = os.environ
+    os.environ['PYTEST_LAMBDA_FLAG'] = "True"
 
     exit_code = pytest.main([
-        "-p", "no:cacheprovider",
+        "-s", # Disable capturing of syslog for debugging
+        "-p", "no:cacheprovider", # Don't try to write pycache files
         "/var/task/src/functional_tests.py"
     ], plugins=[])
-    print("EXIT CODE")
-    print(exit_code)
+
+    if exit_code == pytest.ExitCode.OK:
+        print("=== Test Condition PASSED ===")
+        response = client.put_lifecycle_event_hook_execution_status(
+            deploymentId=event['DeploymentId'],
+            lifecycleEventHookExecutionId=event['LifecycleEventHookExecutionId'],
+            status='Succeeded'
+        )
+        return
+    else:
+        print("=== Test Condition FAILED ===")
+        response = client.put_lifecycle_event_hook_execution_status(
+            deploymentId=event['DeploymentId'],
+            lifecycleEventHookExecutionId=event['LifecycleEventHookExecutionId'],
+            status='Failed'
+        )
+        return

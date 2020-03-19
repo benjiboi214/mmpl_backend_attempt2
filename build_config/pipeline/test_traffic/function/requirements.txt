@@ -2,3 +2,4 @@ selenium==2.53.0
 chromedriver-binary==2.37.0
 pytest==5.3.5
 pyfakefs
+boto3
