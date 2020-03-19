@@ -21,6 +21,10 @@ else
     echo "Continuing without downloading fresh binaries."
 fi
 
+cp functional_tests.py $FUNC_DIR/src/functional_tests.py
+
 sam build -u \
   -s $BASE_DIR \
   -t $BASE_DIR/template.yaml
+
+rm $FUNC_DIR/src/functional_tests.py
