@@ -5,7 +5,6 @@ import uuid
 from selenium import webdriver
 from selenium.webdriver import FirefoxOptions
 
-print("magic")
 
 class WebDriverTest(unittest.TestCase):
 
