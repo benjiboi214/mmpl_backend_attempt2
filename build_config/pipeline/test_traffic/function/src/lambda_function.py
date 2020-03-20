@@ -1,4 +1,5 @@
 import os
+import time
 
 import boto3
 import pytest
@@ -7,12 +8,15 @@ client = boto3.client('codedeploy')
 
 
 def lambda_handler(event, context, *args, **kwargs):
+    time.sleep(3)
+
     # Get and print the environment for debugging.
     os.environ['PYTEST_LAMBDA_FLAG'] = "True"
 
     exit_code = pytest.main([
         "-s",  # Disable capturing of syslog for debugging
         "-p", "no:cacheprovider",  # Don't try to write pycache files
+        "-p", "no:warnings",
         "/var/task/src/functional_tests.py"
     ], plugins=[])
 

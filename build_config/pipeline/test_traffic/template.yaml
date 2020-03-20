@@ -21,8 +21,10 @@ Resources:
       Runtime: python3.6
       Environment:
         Variables: 
-          PATH: /var/task:/var/task/bin
-          PYTHONPATH: /var/task:/var/task/src:/var/task/lib
+          PATH: /var/task/bin
+          PYTHONPATH: /var/task/src:/var/task/lib
+          # PATH: /var/task:/var/task/bin
+          # PYTHONPATH: /var/task:/var/task/src:/var/task/lib
           DJANGO_EXTERNAL_HOST_NAME: "staging.mmpl.systemiphus.com"
           DJANGO_EXTERNAL_PORT_NUM: "8443"
           DJANGO_EXTERNAL_PROTOCOL: "https"
