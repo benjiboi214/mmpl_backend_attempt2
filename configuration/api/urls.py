@@ -20,7 +20,7 @@ from django.views import defaults as default_views
 
 from home.views import HomePageView
 
-print("Settings!" + settings.ADMIN_URL)
+print("Admin URL: " + settings.ADMIN_URL)
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='index'),
