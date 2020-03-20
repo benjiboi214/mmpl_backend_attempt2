@@ -3,8 +3,6 @@ import unittest
 import uuid
 
 from selenium import webdriver
-from selenium.webdriver import FirefoxOptions
-
 
 class WebDriverTest(unittest.TestCase):
 
@@ -48,7 +46,7 @@ class WebDriverTest(unittest.TestCase):
         return webdriver.Chrome(chrome_options=chrome_options)
 
     def get_local_webdriver(self):
-        firefox_options = FirefoxOptions()
+        firefox_options = webdriver.FirefoxOptions()
         firefox_options.add_argument("--headless")
 
         return webdriver.Firefox(options=firefox_options)
