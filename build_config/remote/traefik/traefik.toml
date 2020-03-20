@@ -1,5 +1,8 @@
-logLevel = "DEBUG"
 defaultEntryPoints = ["http"]
+
+[log]
+  level = "WARN"
+  format = "json"
 
 [accessLog]
 # Entrypoints, http and https
