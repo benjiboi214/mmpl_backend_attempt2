@@ -1,6 +1,7 @@
 logLevel = "DEBUG"
 defaultEntryPoints = ["http"]
 
+[accessLog]
 # Entrypoints, http and https
 [entryPoints]
   # http should be redirected to https
