@@ -24,3 +24,9 @@ functions/src/functional_tests.py
 
 # Chrome Binaries
 build_config/pipeline/test_traffic/function/bin/
+
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
