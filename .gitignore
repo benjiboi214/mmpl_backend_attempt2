@@ -2,6 +2,9 @@
 .env
 .env*
 
+# System Files
+.DS_Store
+
 # IDE Environ
 .vscode/
 Pipfile
