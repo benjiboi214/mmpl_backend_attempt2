@@ -4,6 +4,7 @@ import uuid
 
 from selenium import webdriver
 
+
 class WebDriverTest(unittest.TestCase):
 
     def get_lambda_web_driver(self):

@@ -22,8 +22,10 @@ from home.views import HomePageView
 
 print("Admin URL: " + settings.ADMIN_URL)
 
+
 urlpatterns = [
     path('', HomePageView.as_view(), name='index'),
+    path('email-me', default_views.server_error, name='email-me'),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls)
 ]
