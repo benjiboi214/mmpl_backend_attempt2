@@ -1,5 +1,7 @@
+import os
+
 from .base import *  # noqa
-from .base import env
+from .base import ROOT_DIR, env
 
 
 # GENERAL
