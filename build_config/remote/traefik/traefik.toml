@@ -21,7 +21,9 @@ defaultEntryPoints = ["http"]
   [frontends.staging]
     backend = "django"
     passHostHeader = true
+    [frontends.staging.routes.test_1]
+      rule = "Host:staging.systemiphus.com"
     [frontends.staging.headers]
       HostsProxyHeaders = ['X-CSRFToken']
-    [frontends.staging.routes.dr1]
-      rule = "PathPrefix: /"
+#    [frontends.staging.routes.dr1]
+#      rule = "PathPrefix: /"
