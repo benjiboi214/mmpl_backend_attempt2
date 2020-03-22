@@ -12,7 +12,7 @@ Resources:
         NetworkConfiguration:
           AwsvpcConfiguration:
             Subnets: [ "subnet-05f221ab7134d8d4d", "subnet-07f4757a3b1f7a637"]
-            SecurityGroups: ["sg-07faf38989e526674"]
+            SecurityGroups: ["sg-02987c702fcb601ee"]
             AssignPublicIp: "ENABLED"
 Hooks:
   - AfterAllowTestTraffic: "arn:aws:lambda:ap-southeast-2:413514076128:function:mmpl-backend-StagingPostDeployHook-3SCW6KEGYLX4"
