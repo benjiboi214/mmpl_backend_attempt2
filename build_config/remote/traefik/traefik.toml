@@ -22,7 +22,7 @@ defaultEntryPoints = ["http"]
     backend = "django"
     passHostHeader = true
     [frontends.staging.routes.host]
-      rule = "Host:staging.systemiphus.com"
+      rule = "Host:staging.mmpl.systemiphus.com"
     [frontends.staging.headers]
       HostsProxyHeaders = ['X-CSRFToken']
   [frontends.staging_healthcheck]
