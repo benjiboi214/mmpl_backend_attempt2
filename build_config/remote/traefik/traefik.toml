@@ -5,6 +5,11 @@ defaultEntryPoints = ["http"]
   format = "json"
 
 [accessLog]
+  [accessLog.fields]
+    defaultMode = "keep"
+    
+    [accessLog.fields.headers]
+      defaultMode = "keep"
 # Entrypoints, http and https
 [entryPoints]
   # http should be redirected to https
