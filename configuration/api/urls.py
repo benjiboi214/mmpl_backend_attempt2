@@ -22,22 +22,9 @@ from home.views import HomePageView
 
 print("Admin URL: " + settings.ADMIN_URL)
 
-from django.http import HttpResponse
-import datetime
-from django.core.mail import send_mail
-
-def test_veiw(request):
-    send_mail("Subject", "text body", "noreply@systemiphius.com",["benjiboi214@gmail.com"], html_message="<html>html body</html>")
-    raise ValueError("raising this on purpose for testing for 500")
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return (html)
-
-
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='index'),
-    path('email-me', test_veiw, name='email-me'),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls)
 ]
