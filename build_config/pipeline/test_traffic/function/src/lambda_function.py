@@ -8,7 +8,7 @@ client = boto3.client('codedeploy')
 
 
 def lambda_handler(event, context, *args, **kwargs):
-    time.sleep(250)
+    time.sleep(20)
 
     # Get and print the environment for debugging.
     os.environ['PYTEST_LAMBDA_FLAG'] = "True"
