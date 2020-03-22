@@ -28,7 +28,7 @@ defaultEntryPoints = ["http"]
   [frontends.staging_healthcheck]
     backend = "django"
     passHostHeader = true
-    [frontends.staging.headers]
+    [frontends.staging_healthcheck.headers]
       HostsProxyHeaders = ['X-CSRFToken']
-    [frontends.staging.routes.health]
+    [frontends.staging_healthcheck.routes.health]
       rule = "PathPrefixStrip: /healthcheck"
