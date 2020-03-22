@@ -1,15 +1,16 @@
 defaultEntryPoints = ["http"]
 
 [log]
-  level = "DEBUG"
+  level = "INFO"
   format = "json"
 
 [accessLog]
-  [accessLog.fields]
-    defaultMode = "keep"
-    
-    [accessLog.fields.headers]
-      defaultMode = "keep"
+  format = "json"
+[accessLog.fields]
+  defaultMode = "keep"
+[accessLog.fields.headers]
+  defaultMode = "keep"
+
 # Entrypoints, http and https
 [entryPoints]
   # http should be redirected to https
