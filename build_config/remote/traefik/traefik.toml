@@ -18,13 +18,6 @@ defaultEntryPoints = ["http"]
       url = "http://localhost:8080"
 
 [frontends]
-  [frontends.staging]
-    backend = "django"
-    passHostHeader = true
-    [frontends.staging.routes.host]
-      rule = "Host:staging.mmpl.systemiphus.com"
-    [frontends.staging.headers]
-      HostsProxyHeaders = ['X-CSRFToken']
   [frontends.staging_healthcheck]
     backend = "django"
     passHostHeader = true
@@ -39,3 +32,10 @@ defaultEntryPoints = ["http"]
       HostsProxyHeaders = ['X-CSRFToken']
     [frontends.staging_functional_testing.routes.health]
       rule = "PathPrefixStrip: /functional_test"
+  [frontends.staging]
+    backend = "django"
+    passHostHeader = true
+    [frontends.staging.routes.host]
+      rule = "Host:staging.mmpl.systemiphus.com"
+    [frontends.staging.headers]
+      HostsProxyHeaders = ['X-CSRFToken']
