@@ -25,13 +25,6 @@ defaultEntryPoints = ["http"]
       HostsProxyHeaders = ['X-CSRFToken']
     [frontends.staging_healthcheck.routes.health]
       rule = "PathPrefixStrip: /healthcheck"
-  [frontends.staging_functional_testing]
-    backend = "django"
-    passHostHeader = true
-    [frontends.staging_functional_testing.headers]
-      HostsProxyHeaders = ['X-CSRFToken']
-    [frontends.staging_functional_testing.routes.health]
-      rule = "PathPrefixStrip: /functional_test"
   [frontends.staging]
     backend = "django"
     passHostHeader = true
