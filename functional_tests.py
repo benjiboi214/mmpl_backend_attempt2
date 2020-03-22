@@ -56,8 +56,8 @@ class WebDriverTest(unittest.TestCase):
 class NewVisitorTest(WebDriverTest):
 
     def setUp(self):
-        is_lambda_test = os.getenv("PYTEST_LAMBDA_FLAG", False)
-        if is_lambda_test:
+        self.is_lambda_test = os.getenv("PYTEST_LAMBDA_FLAG", False)
+        if self.is_lambda_test:
             self.browser = self.get_lambda_web_driver()
         else:
             self.browser = self.get_local_webdriver()
@@ -70,7 +70,10 @@ class NewVisitorTest(WebDriverTest):
         self.browser.quit()
 
     def _get_host_url(self):
-        return f'{self.protocol}://{self.host}:{self.port}'
+        if self.is_lambda_test:
+            return f'{self.protocol}://{self.host}:{self.port}/functional_test'
+        else:
+            return f'{self.protocol}://{self.host}:{self.port}'
 
     def test_home_page_is_under_construction(self):
         self.browser.get(self._get_host_url())
