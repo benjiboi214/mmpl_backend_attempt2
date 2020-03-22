@@ -71,7 +71,7 @@ class NewVisitorTest(WebDriverTest):
 
     def _get_host_url(self):
         if self.is_lambda_test:
-            return f'{self.protocol}://{self.host}:{self.port}/functional_test'
+            return f'{self.protocol}://{self.host}:{self.port}'
         else:
             return f'{self.protocol}://{self.host}:{self.port}'
 
