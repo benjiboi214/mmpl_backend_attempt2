@@ -1,7 +1,7 @@
 defaultEntryPoints = ["http"]
 
 [log]
-  level = "WARN"
+  level = "DEBUG"
   format = "json"
 
 [accessLog]
