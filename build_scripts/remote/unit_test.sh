@@ -5,7 +5,7 @@ pipenv run pytest ./api \
   -c $PYTEST_UNIT_CONFIG_PATH \
   --junitxml=$PYTEST_UNIT_REPORT_PATH \
   --cov=api \
-  --cov-report xml-missing:$COVERAGE_REPORT_PATH
+  --cov-report xml:$COVERAGE_REPORT_PATH
 
 echo "#### Running Flake8 ####"
 pipenv run flake8 \
