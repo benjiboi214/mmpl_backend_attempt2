@@ -18,13 +18,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
 
-from home.views import HomePageView
-
-print("Admin URL: " + settings.ADMIN_URL)
+from api.home.views import HomePageView
 
 
 urlpatterns = [
-    path('', HomePageView.as_view(), name='index'),
+    path('', HomePageView.as_view(), name='home'),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls)
 ]
