@@ -4,8 +4,11 @@ echo "#### Running PyTest ####"
 pipenv run pytest ./api \
   -c $PYTEST_UNIT_CONFIG_PATH \
   --junitxml=$PYTEST_UNIT_REPORT_PATH \
-  --cov=api \
-  --cov-report xml:$COVERAGE_REPORT_PATH
+  
+echo "#### Running Coverage ####"
+pipenv run pytest --cov=api ./api \
+  -c $PYTEST_UNIT_CONFIG_PATH \
+  --junitxml=$COVERAGE_REPORT_PATH 
 
 echo "#### Running Flake8 ####"
 pipenv run flake8 \
