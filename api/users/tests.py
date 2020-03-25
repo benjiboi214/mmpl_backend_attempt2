@@ -11,7 +11,7 @@ class AppTest(TestCase):
         self.assertEqual(UsersConfig.name, 'users')
 
 
-class TestUsersMigrations(TransactionTestCase):
+class MigrationsTests(TransactionTestCase):
 
     def test_default_superuser_created(self):
         migrator = Migrator(database='default')

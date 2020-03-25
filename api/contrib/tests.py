@@ -3,7 +3,7 @@ from django.test import TransactionTestCase
 from django_test_migrations.migrator import Migrator
 
 
-class TestSitesMigrations(TransactionTestCase):
+class MigrationsTests(TransactionTestCase):
 
     def test_default_site_updated(self):
         migrator = Migrator(database='default')
