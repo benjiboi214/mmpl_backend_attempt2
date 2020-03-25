@@ -33,3 +33,10 @@ build_config/pipeline/test_traffic/function/bin/
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Coverage Files
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover

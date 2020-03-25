@@ -6,19 +6,28 @@ from django.conf import settings
 from django.db import migrations
 
 
+def generate_superuser(apps, schema_editor):
+    from django.contrib.auth.models import User
+
+    superuser = User.objects.create_superuser(
+        username=settings.DJANGO_SU_NAME,
+        email=settings.DJANGO_SU_EMAIL,
+        password=settings.DJANGO_SU_PASSWORD)
+
+    superuser.save()
+
+
+def remove_superuser(apps, schema_editor):
+    from django.contrib.auth.models import User
+
+    superuser = User.objects.filter(
+        username=settings.DJANGO_SU_NAME,
+        email=settings.DJANGO_SU_EMAIL
+    ).delete()
+
+
 class Migration(migrations.Migration):
+
     dependencies = []
 
-    def generate_superuser(apps, schema_editor):
-        from django.contrib.auth.models import User
-
-        superuser = User.objects.create_superuser(
-            username=settings.DJANGO_SU_NAME,
-            email=settings.DJANGO_SU_EMAIL,
-            password=settings.DJANGO_SU_PASSWORD)
-
-        superuser.save()
-
-    operations = [
-        migrations.RunPython(generate_superuser),
-    ]
+    operations = [migrations.RunPython(generate_superuser, remove_superuser)]
