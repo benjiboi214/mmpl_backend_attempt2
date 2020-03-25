@@ -1,9 +1,17 @@
 from django.conf import settings
-from django.test import TransactionTestCase
+from django.test import TestCase, TransactionTestCase
 from django_test_migrations.migrator import Migrator
 
 
-class TestSitesMigrations(TransactionTestCase):
+class AppTest(TestCase):
+
+    def test_app_name(self):
+        from .apps import UsersConfig
+
+        self.assertEqual(UsersConfig.name, 'users')
+
+
+class TestUsersMigrations(TransactionTestCase):
 
     def test_default_superuser_created(self):
         migrator = Migrator(database='default')
