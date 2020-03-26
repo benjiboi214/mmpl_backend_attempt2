@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export BASE_DIR="build_config/pipeline/test_traffic"
+export BASE_DIR="build_config/pipeline/lambda"
 export FUNC_DIR="$BASE_DIR/function"
 
 if [ "$1" == "full" ]; then
