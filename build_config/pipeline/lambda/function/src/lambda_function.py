@@ -75,7 +75,7 @@ def send_sms(event, context):
 
     print("req:")
     print(req)
-
+    
     try:
         # perform HTTP POST request
         with urllib.request.urlopen(req, data) as f:
