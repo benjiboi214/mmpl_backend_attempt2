@@ -111,6 +111,6 @@ def send_sms(event, context):
 
     if 200 <= response.status_code <= 299:
         put_job_success(job_id, "SMS sent successfully! " + response.status_code)
-        return 
+        return
     else:
         put_job_failure(job_id, "Failed to send SMS")
