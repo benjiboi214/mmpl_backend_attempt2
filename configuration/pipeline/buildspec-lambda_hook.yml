@@ -13,10 +13,10 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Lambda zip payload
-      - ./build_scripts/pipeline/build.sh full
+      - ./build_scripts/pipeline/lambda/build.sh full
   post_build:
     commands:
       - ls -la ./
       - echo Build completed on `date`
       - echo Pushing the Lambda zip payload
-      - ./build_scripts/pipeline/publish.sh
+      - ./build_scripts/pipeline/lambda/publish.sh
