@@ -45,6 +45,8 @@ def functional_tests(event, context, *args, **kwargs):
 
 
 def send_sms(event, context):
+    print("Firing lambda sms")
+
     to_number = "+61429227281"
     from_number = "MMPL Staging Pipeline"
     body = "Pipeline has finished building. Ready to deploy."
@@ -75,7 +77,7 @@ def send_sms(event, context):
 
     print("req:")
     print(req)
-    
+
     try:
         # perform HTTP POST request
         with urllib.request.urlopen(req, data) as f:
