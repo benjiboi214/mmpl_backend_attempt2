@@ -73,6 +73,9 @@ def send_sms(event, context):
     base64string = base64.b64encode(authentication.encode('utf-8'))
     req.add_header("Authorization", "Basic %s" % base64string.decode('ascii'))
 
+    print("req:")
+    print(req)
+
     try:
         # perform HTTP POST request
         with urllib.request.urlopen(req, data) as f:
