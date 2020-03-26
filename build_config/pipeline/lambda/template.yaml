@@ -17,7 +17,7 @@ Resources:
     Properties:
       Role: arn:aws:iam::413514076128:role/codePipelineLambdaExecutionRole
       CodeUri: function/
-      Handler: src.lambda_function.lambda_handler
+      Handler: src.lambda_function.functional_tests
       Runtime: python3.6
       Environment:
         Variables: 
@@ -28,3 +28,15 @@ Resources:
           DJANGO_EXTERNAL_HOST_NAME: "staging.mmpl.systemiphus.com"
           DJANGO_EXTERNAL_PORT_NUM: "8443"
           DJANGO_EXTERNAL_PROTOCOL: "https"
+  StagingDeployApprove:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Role: arn:aws:iam::413514076128:role/codePipelineLambdaExecutionRole
+      CodeUri: function/
+      Handler: src.lambda_function.send_sms
+      Runtime: python3.6
+      Environment:
+        Variables: 
+          PATH: /var/task/bin
+          TWILIO_ACCOUNT_SID: '{{resolve:ssm:/mmpl-backend/dev/TWILIO_ACCOUNT_SID:1}}'
+          TWILIO_AUTH_TOKEN: '{{resolve:ssm:/mmpl-backend/dev/TWILIO_AUTH_TOKEN:1}}'
