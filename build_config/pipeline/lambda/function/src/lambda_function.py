@@ -1,12 +1,13 @@
 import base64
 import os
 import time
-import urllib
 
 import boto3
 import pytest
+import requests
 
 client = boto3.client('codedeploy')
+code_pipeline = boto3.client('codepipeline')
 
 TWILIO_SMS_URL = "https://api.twilio.com/2010-04-01/Accounts/{}/Messages.json"
 TWILIO_ACCOUNT_SID = os.environ.get("TWILIO_ACCOUNT_SID")
@@ -44,11 +45,43 @@ def functional_tests(event, context, *args, **kwargs):
         return
 
 
+def put_job_success(job, message):
+    """Notify CodePipeline of a successful job
+
+    Args:
+        job: The CodePipeline job ID
+        message: A message to be logged relating to the job status
+
+    Raises:
+        Exception: Any exception thrown by .put_job_success_result()
+
+    """
+    print('Putting job success')
+    print(message)
+    code_pipeline.put_job_success_result(jobId=job)
+
+
+def put_job_failure(job, message):
+    """Notify CodePipeline of a failed job
+
+    Args:
+        job: The CodePipeline job ID
+        message: A message to be logged relating to the job status
+
+    Raises:
+        Exception: Any exception thrown by .put_job_failure_result()
+
+    """
+    print('Putting job failure')
+    print(message)
+    code_pipeline.put_job_failure_result(jobId=job, failureDetails={'message': message, 'type': 'JobFailed'})
+
+
 def send_sms(event, context):
-    print("Firing lambda sms")
+    job_id = event['CodePipeline.job']['id']
 
     to_number = "+61429227281"
-    from_number = "MMPL Staging Pipeline"
+    from_number = "MMPL"
     body = "Pipeline has finished building. Ready to deploy."
 
     if not TWILIO_ACCOUNT_SID:
@@ -66,24 +99,18 @@ def send_sms(event, context):
     populated_url = TWILIO_SMS_URL.format(TWILIO_ACCOUNT_SID)
     post_params = {"To": to_number, "From": from_number, "Body": body}
 
-    # encode the parameters for Python's urllib
-    data = urllib.parse.urlencode(post_params).encode()
-    req = urllib.request.Request(populated_url)
-
     # add authentication header to request based on Account SID + Auth Token
     authentication = "{}:{}".format(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
     base64string = base64.b64encode(authentication.encode('utf-8'))
-    req.add_header("Authorization", "Basic %s" % base64string.decode('ascii'))
 
-    print("req:")
-    print(req)
+    headers = {
+        'Authorization': "Basic %s" % base64string.decode('ascii')
+    }
 
-    try:
-        # perform HTTP POST request
-        with urllib.request.urlopen(req, data) as f:
-            print("Twilio returned {}".format(str(f.read().decode('utf-8'))))
-    except Exception as e:
-        # something went wrong!
-        return e
+    response = requests.request("POST", populated_url, data=post_params, headers=headers)
 
-    return "SMS sent successfully!"
+    if 200 <= response.status_code <= 299:
+        put_job_success(job_id, "SMS sent successfully! " + response.status_code)
+        return 
+    else:
+        put_job_failure(job_id, "Failed to send SMS")
