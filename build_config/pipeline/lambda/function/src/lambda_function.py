@@ -78,6 +78,11 @@ def put_job_failure(job, message):
 
 
 def send_sms(event, context):
+    print("EVENT")
+    print(event)
+    print("CONTEXT")
+    print(context)
+
     job_id = event['CodePipeline.job']['id']
 
     to_number = "+61429227281"
