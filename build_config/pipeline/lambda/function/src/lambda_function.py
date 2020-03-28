@@ -78,7 +78,7 @@ def put_job_failure(job, message):
 
 
 def send_sms(event, context):
-    print("EVENT")
+    print("EVENT: ")
     print(event)
     print("CONTEXT")
     print(context)
