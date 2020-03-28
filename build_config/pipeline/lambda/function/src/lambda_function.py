@@ -87,7 +87,8 @@ def send_sms(event, context):
 
     to_number = "+61429227281"
     from_number = "MMPL"
-    body = f"Ready to Deploy. https://github.com/benjiboi214/mmpl_backend/commit/{event['CodePipeline.job']['data']['inputArtifacts'][0]['revision']}"
+    body = "Ready to Deploy. https://github.com/benjiboi214/mmpl_backend/commit/%s" % \
+        {event['CodePipeline.job']['data']['inputArtifacts'][0]['revision']}
 
     if not TWILIO_ACCOUNT_SID:
         return "Unable to access Twilio Account SID."
