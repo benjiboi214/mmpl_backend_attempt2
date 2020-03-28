@@ -15,4 +15,4 @@ Resources:
             SecurityGroups: ["sg-02987c702fcb601ee"]
             AssignPublicIp: "ENABLED"
 Hooks:
-  - AfterAllowTestTraffic: "arn:aws:lambda:ap-southeast-2:413514076128:function:mmpl-backend-StagingPostDeployHook-3SCW6KEGYLX4"
+  - AfterAllowTestTraffic: "arn:aws:lambda:ap-southeast-2:413514076128:function:mmpl-backend-StagingPostDeployHook-1KF5IFFMEN2HA"
