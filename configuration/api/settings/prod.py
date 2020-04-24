@@ -254,7 +254,7 @@ sentry_sdk.init(
     dsn=SENTRY_DSN,
     integrations=[sentry_logging, DjangoIntegration()],
     send_default_pii=True,
-    environment=env("DJANGO_SSM_PARAMS_PATH")
+    environment=env("SENTRY_ENVIRONMENT_LABEL")
 )
 
 # Custom
