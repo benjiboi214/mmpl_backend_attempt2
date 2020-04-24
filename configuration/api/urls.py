@@ -24,7 +24,8 @@ from api.home.views import HomePageView
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     # Django Admin, use {% url 'admin:index' %}
-    path(settings.ADMIN_URL, admin.site.urls)
+    path(settings.ADMIN_URL, admin.site.urls),
+    path('email-me', default_views.server_error, name='email-me'), 
 ]
 
 if settings.DEBUG:
