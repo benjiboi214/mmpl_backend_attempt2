@@ -21,10 +21,17 @@ from django.views import defaults as default_views
 from api.home.views import HomePageView
 
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
+    print(division_by_zero)
+
+
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     # Django Admin, use {% url 'admin:index' %}
-    path(settings.ADMIN_URL, admin.site.urls)
+    path(settings.ADMIN_URL, admin.site.urls),
+    path('email', trigger_error, name='email-me'),
+    path('divide', trigger_error, name='divide'),
 ]
 
 if settings.DEBUG:
