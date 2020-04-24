@@ -1,3 +1,4 @@
+import api
 import logging
 
 import sentry_sdk
@@ -254,7 +255,8 @@ sentry_sdk.init(
     dsn=SENTRY_DSN,
     integrations=[sentry_logging, DjangoIntegration()],
     send_default_pii=True,
-    environment=env("SENTRY_ENVIRONMENT_LABEL")
+    environment=env("SENTRY_ENVIRONMENT_LABEL"),
+    release=f"mmpl-backend@{api.__version__}"
 )
 
 # Custom
