@@ -251,7 +251,7 @@ sentry_logging = LoggingIntegration(
 )
 
 sentry_sdk.init(
-    dsn=SENTRY_DSN, 
+    dsn=SENTRY_DSN,
     integrations=[sentry_logging, DjangoIntegration()],
     send_default_pii=True
 )
