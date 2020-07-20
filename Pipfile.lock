@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "03b0a9e04cffa3b00e7a6f07d685aa2bf9e8c1812ba55aea7c21b238db5f5469"
+            "sha256": "a557660afbff9e001c85ec5ce7cd5075099f486f5e1e623d0fa9274526544dfd"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -74,11 +74,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:2f1ba1db8648484dd5c238fb62504777b7ad090c81c5f1fd8d5eb5ec21b5f283",
-                "sha256:c91c91a7ad6ef67a874a4f76f58ba534f9208412692a840e1d125eb5c279cb0a"
+                "sha256:5052b34b34b3425233c682e0e11d658fd6efd587d11335a0203d827224ada8f2",
+                "sha256:e1630333248c9b3d4e38f02093a26f1e07b271ca896d73097457996e0fae12e8"
             ],
             "index": "pypi",
-            "version": "==3.0.3"
+            "version": "==3.0.7"
         },
         "django-allauth": {
             "hashes": [
@@ -96,9 +96,6 @@
             "version": "==0.3.1"
         },
         "django-anymail": {
-            "extras": [
-                "mailgun"
-            ],
             "hashes": [
                 "sha256:7af1076f383fb3b62b301949ea8f7d87a41376015309ffc35a246a1726060429",
                 "sha256:a2bd7a40aa91a1033892630652d3ca8148de70fa2927eb4eebde239fe705f0f4"
@@ -265,6 +262,7 @@
                 "sha256:79ee589a3caca649a9bfd2a8de4709837400dfa00b6cc81962a1e6a1815969ae",
                 "sha256:f8d2bd89d25bc39dabe7d23df520442fa1d8969b82544370e03d88b5a591c392"
             ],
+            "index": "pypi",
             "version": "==3.7.4.2"
         },
         "urllib3": {
@@ -363,11 +361,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:2f1ba1db8648484dd5c238fb62504777b7ad090c81c5f1fd8d5eb5ec21b5f283",
-                "sha256:c91c91a7ad6ef67a874a4f76f58ba534f9208412692a840e1d125eb5c279cb0a"
+                "sha256:5052b34b34b3425233c682e0e11d658fd6efd587d11335a0203d827224ada8f2",
+                "sha256:e1630333248c9b3d4e38f02093a26f1e07b271ca896d73097457996e0fae12e8"
             ],
             "index": "pypi",
-            "version": "==3.0.3"
+            "version": "==3.0.7"
         },
         "django-coverage-plugin": {
             "hashes": [
@@ -492,10 +490,10 @@
         },
         "packaging": {
             "hashes": [
-                "sha256:3c292b474fda1671ec57d46d739d072bfd495a4f51ad01a055121d81e952b7a3",
-                "sha256:82f77b9bee21c1bafbf35a84905d604d5d1223801d639cf3ed140bd651c08752"
+                "sha256:4357f74f47b9c12db93624a82154e9b120fa8293699949152b22065d556079f8",
+                "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"
             ],
-            "version": "==20.3"
+            "version": "==20.4"
         },
         "pluggy": {
             "hashes": [
