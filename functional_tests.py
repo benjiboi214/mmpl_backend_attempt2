@@ -86,6 +86,20 @@ class NewVisitorTest(WebDriverTest):
 
         # Ensure Under Construction is in the title
         self.assertIn('Page not found', self.browser.title)
+    
+    def test_can_create_new_user(self):
+        # API request to backend create new user
+
+        # API request to mailsac to get list of emails
+
+        # API request to backend to confirm email address
+
+        # API request to mailsac to remove confirmation email
+
+        # Log in to backend
+
+        # API request to remove user
+        return
 
 
 if __name__ == '__main__':
